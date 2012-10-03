@@ -1,0 +1,12 @@
+#php_value session.gc_maxlifetime 10800
+#php_value session.cookie_lifetime 10800
+
+#php_flag display_errors on
+#php_value error_reporting 7 
+#php_value short_open_tag on
+
+AddDefaultCharset UTF-8
+
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|scripts|styles|admin_design)
+RewriteRule ^(.*)$ /index.php/$1 [L] 

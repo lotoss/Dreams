@@ -1,0 +1,417 @@
+	
+<!-- start cart_list_template -->
+<script type="text/xml" id="cart_list">
+	<!-- start booking -->
+	<section class="booking list">
+		<h1 class="title_block">Состав заказа</h1>
+                    
+		<div class="download_template">
+			<a href="#">Скачать шаблоны</a><br>
+			с инструкцией по верстке
+		</div>
+                    
+		<!-- start basket_items -->
+		<ul class="basket_items">
+		</ul>
+		<!-- end basket_items -->
+                    
+		<!-- start total_value -->
+		<div class="total_value">
+        	<span class="total_cost">Общая стоимость:</span>
+        	<div class="price_big"><span><%= total_cost %></span><i class="rubs">P</i></div>
+         	
+			<p class="discount_mywed pro">
+				Вы можете получить скидку <span><%= discount %></span> <i class="rubs">P</i>,
+				<a href="#">вступив в MyWed Pro</a>
+			</p>
+			<p class="discount_mywed free">
+				Без учета скидки участника <a href="#">MyWed Pro</a> в <span><%= discount %></span> <i class="rubs">P</i>
+			</p>
+			<a class="next_step" href="#"><span>Следующий шаг</span></a>
+		</div>
+		<!-- end total_value -->
+	</section>
+	<!-- end booking -->
+</script>
+<!-- end cart_list_template -->
+
+<!-- start cart_load_list_template -->
+<script type="text/xml" id="load_list">
+	<!-- start booking -->
+	<section class="booking loading">
+		<h1 class="title_block">Загрузка макетов</h1>
+                    
+		<div class="download_template">
+			<a href="#">Скачать шаблоны</a><br>
+			с инструкцией по верстке
+		</div>
+                    
+		<!-- start basket_items -->
+		<ul class="basket_items">
+		</ul>
+		<!-- end basket_items -->
+                    
+		<!-- start total_value -->
+		<div class="total_value">
+        	
+			<a class="next_step" href="#"><span>Следующий шаг</span></a>
+		</div>
+		<!-- end total_value -->
+	</section>
+	<!-- end booking -->
+</script>
+<!-- end cart_load_list_template -->
+
+<!-- start cart_item_template -->
+<script type="text/xml" id="cart_item">
+<li>  
+	<!-- start item -->             
+	<div class="item">             
+		<div class="mask right"></div>
+		
+		<!-- start item_name -->
+		<div class="item_name">
+			<h2 class="item_title"><%= title %></h2>
+			
+			<ul class="item_name_opts app_nav">
+				<li><a class="item_contents" href="#">Состав книги</a></li>
+				<li><a class="item_edit" href="#">Редактировать</a></li>
+				<li><a class="item_delete" href="#">Удалить</a></li>
+			</ul>
+		</div>
+		<!-- end item_name -->
+                                
+		<!-- start items_quantity -->
+		<div class="items_quantity">
+			<div class="ctr">
+				<a class="dec"></a>
+				<input class="quan" type="text" value="<%= quantity %> шт." pattern="">
+				<a class="inc"></a>
+			</div>
+			<span class="quantity_discount">Скидка <i><%= sale_per_element %></i> <span class="rubs">P</span> за каждый дополнительный экземпляр</span>
+		</div>
+		<!-- end items_quantity -->
+
+		<!-- start items_cost -->
+		<div class="items_cost">
+			<div class="price_small"><span><%= total_price %></span><i class="rubs">P</i></div>
+		</div>
+		<!-- end items_cost -->
+                                
+		<div class="item_icon" style="background-image:url(<%= image_url %>);"></div>
+		                                
+		<a class="item_state" href="#"></a>
+	</div>
+	<!-- end item -->
+
+	<!-- start block_contents --> 
+	<div class="block_closed block_contents">
+		<dl class="contents_opts">
+			<dt>Книга</dt>
+			<%= property_album %>
+		</dl>
+	    <dl class="contents_opts">
+			<dt>Короб</dt>
+			<%= property_box %>
+		</dl>
+	</div>
+	<!-- end block_contents -->  
+</li>
+</script>
+<!-- end cart_item_template -->
+
+<!-- start cart_item_property_template -->
+<script type="text/xml" id="cart_item_property">
+<dd>
+	<b><%= key %>:</b>
+	<span><%= value %></span>
+	<% price = price || 0; 
+	if(price !== 0) 
+		print('<div class="price_small price_small_alt"><span>' + price + '</span><i class="rubs">P</i></div>'); %>
+</dd>
+</script>
+<!-- end cart_item_property_template -->
+
+<!-- start card_complect_template -->
+<script type="text/xml" id="card_complect">
+<li class="card_complect">
+	<!-- start item --> 
+	<div class="item empty">                    
+		<div class="mask right"></div>          
+		<div class="mask left"></div>
+        <div class="add">                     
+			<span class="item_add">А еще вы можете добавить</span>
+			<br>
+			<a class="link" href="#cart-cards">Комплект карточек с образцами ткани и кожи</a>
+		</div>
+		<div class="remove">
+			<span class="item_add">Комплект карточек с образцами ткани и кожи добавлен </span>
+			<br>
+			<a class="link" href="#">Отменить</a>
+		</div>
+	</div>
+	<!-- end item --> 
+</li>  
+</script>
+<!-- end card_complect_template -->
+
+<!-- start cart_item_load_template -->
+<script type="text/xml" id="cart_item_load">
+<li>
+	<!-- start item --> 
+	<div class="item">          
+		<div class="mask right"></div>
+		<% if (img == false ) {%>
+		<div class="mask left"></div>
+		<% } %>
+		<!-- start item_name -->
+		<div class="item_name">
+			<h2 class="item_title"><%= title %></h2>
+			<% if(logo == true) { %>
+			<span class="hint">Не забудьте приложить макет с логотипом фотографа для тиснения в архив.</span>
+			<% } %>
+		</div>
+		<!-- end item_name -->
+                                
+		<!-- start item_download -->
+		<div class="item_download">
+			<% if(first == true) { %>
+        	<p>Укажите ссылку на архив с файлами. Архив должен содержать сверстанные согласно техническим параметрам файлы в формате *.JPG.</p>
+
+			<p>Количество фоторазворотов в архиве должно соответствовать выбранному при заказе.</p>
+            <% } %>             
+			        
+			<% if(link != 'disable') { %>      
+			<input class="simple" type="text" placeholder="Укажите ссылку" <% if (link !== false){%>value="<%= link %>"<%}%> />
+            <% } %>     
+			 
+			<% if(first == true) { %>                       
+			<p>Для закачки архива вы можете воспользоваться<br> файловыми обменниками:</p>
+                                    
+			<ul class="links_outs">
+				<li><a class="link_outs" href="#">narod.yandex.ru</a></li>
+				<li><a class="link_outs" href="#">depositfiles.com/ru/</a></li>
+				<li><a class="link_outs" href="#">rapidshare.com</a></li>
+				<li><a class="link_outs" href="#">uploadbox.com</a></li>
+			</ul>
+			<% } %>           
+		</div>
+		<!-- end item_download -->
+		
+        <% if (img !== false  ) { %>                 
+		<div class="item_icon" style="background-image:url(<%= img %>);"></div>
+        <% }%>   
+		                    
+		<div class="clear"></div>
+	</div>
+	<!-- end item --> 
+</li>  
+</script>
+<!-- end cart_item_load_template -->
+<script type="text/xml" id="order_form">
+<!-- end box_form -->
+<section class="box_form order">
+	<h1 class="title_block">Оформление заказа</h1>
+                   
+	<form class="form_simple" action="#">
+		<div>
+			<h2 class="item_title">Контактные данные</h2>
+			<label>
+				<span>Ваше имя</span>
+				<input type="text" class="simple simple_alt requare" name="firstname" />
+			</label>
+			<br/>
+			<label>
+				<span>Фамилия</span>
+				<input type="text" class="simple simple_alt requare" name="surename" />
+			</label>
+			<br/>
+			<label>
+				<span>Контактный телефон</span>
+				<input type="text" class="simple simple_alt requare" name="phone" />
+			</label>
+			<br/>
+			<label>
+				<span>Ваш e-mail</span>
+				<input type="text" class="simple simple_alt requare" name="email" />
+			</label>
+                            
+                            
+			<h2 class="item_title margin">Доставка <strong id="delivery_logo_price" class="price_small"><span>13000</span><i class="rubs">P</i></strong></h2>
+                    
+			<ul class="app_nav small tabs">
+				<li class="active"><a href="#office">Забрать в офисе</a></li>
+				<li><a href="#moskow">По Москве</a></li>
+				<li><a href="#russia">По России</a></li>
+				<!--<li><a href="#present">Подарочная доставка</a></li>-->
+			</ul>
+            <div id="office" class="delivery">
+				<div class="area">
+					<span>Примечания</span>
+					<textarea class="simple simple_alt simple_alt_long" name="notes" ></textarea>
+				</div>
+			</div>            
+            <div id="moskow" class="delivery">          
+				<label>
+					<span>Улица, дом, квартира</span>
+					<input type="text" class="simple simple_alt simple_alt_long requare" name="adres" >
+					<!--<div class="warning_text">Заполните поле</div>-->
+				</label>
+				<br/>
+				<div class="area">
+					<span>Примечания</span>
+					<textarea class="simple simple_alt simple_alt_long" name="notes" ></textarea>
+				</div>
+           	</div>   
+			<div id="russia" class="delivery"> 
+				<div class="sel" name="region">
+					<span>Страна</span>
+					<select class="simple simple_alt requare">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+				</div>
+				<div class="sel" name="city">
+					<span>Город</span>
+					<select class="simple simple_alt requare">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+				</div>
+				<label>
+					<span>Улица, дом, квартира</span>
+					<input type="text" class="simple simple_alt simple_alt_long requare" name="adres" >
+					
+				</label>
+				<br/>
+				<div class="area">
+					<span>Примечания</span>
+					<textarea class="simple simple_alt simple_alt_long" name="notes"></textarea>
+				</div>
+			</div>  
+			<div id="present" class="delivery"> 
+				<div class="sel" name="region">
+					<span>Страна</span>
+					<select class="simple simple_alt requare">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+				</div>
+				<div class="sel" name="city">
+					<span>Город</span>
+					<select class="simple simple_alt requare">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+				</div>
+				<label>
+					<span>Улица, дом, квартира</span>
+					<input type="text" class="simple simple_alt simple_alt_long requare" name="adres" >
+					
+				</label>
+				<label>
+				<span>Имя получателя</span>
+					<input type="text" class="simple simple_alt requare" name="recipient_firstname" />
+				</label>
+				<br/>
+				<label>
+					<span>Фамилия получателя</span>
+					<input type="text" class="simple simple_alt requare" name="recipient_surename" />
+				</label>
+				<br/>
+				<label>
+					<span>Телефон получателя</span>
+					<input type="text" class="simple simple_alt requare" name="recipient_phone" />
+				</label>
+				<br/>
+				<div class="area">
+					<span>Примечания</span>
+					<textarea class="simple simple_alt simple_alt_long" name="notes"></textarea>
+				</div>
+			</div>    
+			<div class="centrl positive">
+				<label class="check">
+					<input type="checkbox">
+					<span>Я согласен с правилами оплаты и предоставления услуг</span>
+				</label>
+		                                
+				<br/>
+		                                
+				<a href="#" class="link_outs">Правила оплаты</a>
+				<a href="#" class="link_outs">Предоставление услуг</a>
+			                                
+				
+			    <div class="total">                            
+					<span class="total_cost">К оплате</span>
+					<div class="price_big"><span>NN</span><i class="rubs">P</i></div>
+				                                
+					<p>На вашем счете <span class="balance">NN</span> <i class="rubs">P</i>, после оплаты у вас останется <span class="rest">3000</span> <i class="rubs">P</i></p>
+				                                
+					<a href="#" class="button_submit disable">Оплатить с внутреннего счета MyWed</a>
+				</div>
+			</div>
+			<div class="centrl negative">
+				<div class="total">                            
+					<span class="total_cost">К оплате</span>
+					<div class="price_big"><span>NN</span><i class="rubs">P</i></div>
+				                    
+					<p>На вашем счете <span class="balance">NN</span> <i class="rubs">P</i>, вам не хватает <span class="rest">NN</span> <i class="rubs">P</i></p>
+				                                
+					<a href="#" target="_blank" class="button_submit">Пополнить внутренний счет MyWed</a>
+				</div>
+			</div>
+		</div>
+	</form>
+                    
+	<div class="decor top"></div>
+	<div class="decor bot"></div>
+</section>
+<!-- end box_form -->
+</script>
+
+<script type="text/xml" id="done">
+<!-- start box_form -->
+<section class="box_form done">
+	<h1 class="title_block">Вы успешно оформили заказ</h1>
+	<h2 class="item_title">Ваш номер заказа <span>34502</span></h2>
+	<p>Теперь откиньтесь  на мягкую спинку кресла<br> и ожидайте курьера с посылкой.</p>
+                    
+	<span class="title_block thanks">Спасибо за покупку!</span>
+	<h2 class="item_title">Если у вас возникли вопросы, вы можете<br> связаться с нами</h2>
+                    
+	<ul class="contents_opts contents_opts_alt">
+		<li>
+			<b>Skype:</b>
+			<i class="link_outs">dreamalbum</i>
+		</li>
+		<li>
+			<b>Тел.:</b>
+			<span>(495) 621-45-52</span>
+		</li>
+		<li>
+			<b>Эл. почта:</b>
+			<a href="mailto:slon@dreamailbum.ru" class="link_outs">slon@dreamailbum.ru</a>
+		</li>
+	</ul>
+
+	<div class="decor top"></div>
+	<div class="decor bot"></div>
+</section>
+<!-- end box_form -->
+</script>
+
+<script type="text/xml" id="cards-popup">
+	<h3>Комплект карточек с образцами ткани и кожи</h3>
+	<div class="price_small"><span>NNN</span><i class="rubs">P</i></div>
+	<p>Добавьте к вашему заказу комплект карточек, чтобы получить полное представление о наших материалах. 
+Также вы можете сделать тиснение, при наличии файла для клише.</p>
+	<ul class="app_nav">
+		<li><a href="">Сделать тиснение на карточках</a></li>
+		<li><a href="">Не надо, я передумал</a></li>
+	</ul>
+	<a href="#" class="button_submit">Добавить комплект карточек к заказу</a>
+</script>
