@@ -54,11 +54,32 @@ CartView = Backbone.View.extend({
 				
 		}
 		
+		if(this.model.get('albums') && this.model.get('albums').length == 0) {
+			this.model.set('doneStep',0);
+		}
+		
 		this.$('.cart_nav li').removeClass('done active disable')
 			.slice(this.model.get('doneStep') + 2).addClass('disable')
 			.end().slice(0, this.model.get('doneStep') + 1).addClass('done')
 			.end().eq( this.model.get('activeStep') ).addClass('active');
+		
+		if(this.model.get('albums') && this.model.get('albums').length == 0) {
+			this.$('.cart_nav li').eq(1).addClass('disable');
+			this.$('.booking .next_step').addClass('disable');
+		} else {
+			this.$('.booking .next_step').removeClass('disable');
+		}
+		
+		if (this.model.get('albums') 
+			&& this.model.get('albums').length != 0
+			&& this.model.get('albums').at(0).get('title') == 'cards' 
+			&& this.model.get('albumsReady') ) {
 			
+			this.$('.cart_nav li').eq(1).hide();
+		} else {
+			this.$('.cart_nav li').eq(1).show();
+		}
+		
 		if ( this.model.get('albumsReady') == false ) {
 			this.$('.cart_nav li').eq(2).addClass('disable');
 			this.$('.loading .next_step').addClass('disable');
@@ -86,6 +107,7 @@ CartView = Backbone.View.extend({
 			this.$('.card_complect .add').show();
 		}
 			
+		
 		
 		return this;
 	},
@@ -232,8 +254,7 @@ CartView = Backbone.View.extend({
 		if( $(event.currentTarget).hasClass('disable') )
 			return;
 		
-		this.$('.cart_nav li.active').next().children().click();
-		$('body').scrollTop(0);
+		
 	},
 	
 	changeUser: function(){

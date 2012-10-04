@@ -38,7 +38,7 @@ CartElement = Backbone.Model.extend({
 				//Удаление модели, элемента и перерисовка корзины 
 				var model = self.collection.parent;
 				self.collection.remove(self);
-				model.view.showTotalPrice();
+				model.view.showTotalPrice().render();
 				self.view.$el.fadeOut('fast', function(){
 					$(this).remove();
 				});
@@ -75,6 +75,9 @@ CartElement = Backbone.Model.extend({
 		data['coverPagePrice'] = ( this.attributes['pages'] - cover.get('minPage') ) * cover.get('pagePrice');
 		data['cover_id'] = cover.get('cover_id');
 		data['color_id'] = color.get('color_id');
+		data['forzatz_id'] = 0;
+		data['stamp_id'] = 0;
+		data['stamp_color_id'] = 0;
 		
 		if( cover.get('type') == 'photo' ){
 			//Форзац
@@ -106,6 +109,8 @@ CartElement = Backbone.Model.extend({
 		var box = this.attributes['box'];
 		data['boxType'] = 'Нет';
 		data['box_id'] = 0;
+		data['box_stamp_id'] = 0;
+		data['box_stamp_color_id'] = 0;
 		if(box !== null){
 			data['title'] += ',<br/>' + box.get('labels')[0].toLocaleLowerCase();   
 			data['boxType'] = box.get('labels')[0];

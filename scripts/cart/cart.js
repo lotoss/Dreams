@@ -79,12 +79,11 @@ Cart = Backbone.Model.extend({
 		this.on('change:cards', this.changeCards);
 		
 		this.get('albums').change();
-		
+		this.validateAlbums();
 	},
 	
 	
 	addAlbum: function(){
-		
 		if(window.album.id === undefined){
 			this.get('albums').add(window.album.attributes);
 			this.get('albums').change();
@@ -204,6 +203,8 @@ Cart = Backbone.Model.extend({
 				discPerAlbum: 0, 
 				last: '1'
 			});
+			this.validateAlbums();
+			this.view.render();
 		} else {
 			this.get('albums').where({title: 'cards'})[0].deleteAlbum();
 		}
