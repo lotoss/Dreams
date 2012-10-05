@@ -72,9 +72,9 @@ CartView = Backbone.View.extend({
 		
 		if (this.model.get('albums') 
 			&& this.model.get('albums').length != 0
-			&& this.model.get('albums').at(0).get('title') == 'cards' 
-			&& this.model.get('albumsReady') ) {
-			
+			&& this.model.get('cards') == true 
+			&& this.model.get('cardsStamp') == false) {
+			this.$('.cart_nav li').eq(2).removeClass('disable');
 			this.$('.cart_nav li').eq(1).hide();
 		} else {
 			this.$('.cart_nav li').eq(1).show();
@@ -253,7 +253,8 @@ CartView = Backbone.View.extend({
 		
 		if( $(event.currentTarget).hasClass('disable') )
 			return;
-		
+		console.log(this.$('.cart_nav li').nextAll().not(':hidden').eq(0))
+		this.$('.cart_nav li').nextAll().not(':hidden').eq(0).children().click();
 		
 	},
 	
