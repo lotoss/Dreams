@@ -43,6 +43,7 @@ $route['404_override'] = '';
 $route['ajax/(:any)'] = "ajax/index/$1";
 $route['cart/(:num)'] = "cart/index/$1";
 $route['order/'] = "order/index";
+$route['city/(:any)']= "city/index/$1";
 
 
 /* End of file routes.php */

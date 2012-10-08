@@ -94,7 +94,7 @@ CartView = Backbone.View.extend({
 			.siblings().removeClass('active');
 			
 		if(this.model.get('activeStep') == 3){
-			this.$('.cart_nav li').slice(0, 3).toggleClass('disable done');
+			this.$('.cart_nav li').slice(0, 3).removeClass('done').addClass('disable');
 		}
 		
 		this.$('#delivery_logo_price span').text( CartOptions.deliveryPrice[this.model.get('delivery')] );
@@ -154,32 +154,41 @@ CartView = Backbone.View.extend({
 		var toPay =  this.model.get('user') ? (this.model.get('user').discount ? Math.ceil( totalPrice * (1-CartOptions.dicsPro)) : totalPrice ): totalPrice;
 		
 		//Вывод оплаты, средств на счету и остатка после оплаты на странице заказа
-		this.$('.total .price_big span').text(toPay);
-		this.$('.total p .balance').text(this.model.get('user').money);
+		if ( this.model.get('user') ) {
+			this.$('.not_autorized').hide();
+			this.$('.autorized').show();
+			
+			this.$('.total .price_big span').text(toPay);
+			this.$('.total p .balance').text(this.model.get('user').money);
 		
-		//Проверка остатка на счету и выбор сообщения 
-		if(this.model.get('user').money - toPay >= 0 ){
-			//При положительном остатке
-			this.$('.positive').show();
-			this.$('.negative').hide();
-			
-			//Вывод остатка после оплаты на странице заказа
-			this.$('.total p .rest').text(this.model.get('user').money - toPay);
-			
-			//Проверка требования согласия с условиями
-			if( this.$('.order .check input').is(':checked') )
-				this.$('.positive .total .button_submit').removeClass('disable');
-			else 
-				this.$('.positive .total .button_submit').addClass('disable');
+		
+		
+			//Проверка остатка на счету и выбор сообщения 
+			if(this.model.get('user').money - toPay >= 0 ){
+				//При положительном остатке
+				this.$('.positive').show();
+				this.$('.negative').hide();
+				
+				//Вывод остатка после оплаты на странице заказа
+				this.$('.total p .rest').text(this.model.get('user').money - toPay);
+				
+				//Проверка требования согласия с условиями
+				if( this.$('.order .check input').is(':checked') )
+					this.$('.positive .total .button_submit').removeClass('disable');
+				else 
+					this.$('.positive .total .button_submit').addClass('disable');
+			} else {
+				//При отрицательном остатке
+				this.$('.positive').hide();
+				this.$('.negative').show();
+				
+				//Вывод остатка после оплаты на странице заказа
+				this.$('.total p .rest').text( -(this.model.get('user').money - toPay) );
+			}
 		} else {
-			//При отрицательном остатке
-			this.$('.positive').hide();
-			this.$('.negative').show();
-			
-			//Вывод остатка после оплаты на странице заказа
-			this.$('.total p .rest').text( -(this.model.get('user').money - toPay) );
+			this.$('.not_autorized').show();
+			this.$('.autorized').hide();
 		}
-		
 		return this;
 	},
 	
@@ -253,8 +262,8 @@ CartView = Backbone.View.extend({
 		
 		if( $(event.currentTarget).hasClass('disable') )
 			return;
-		console.log(this.$('.cart_nav li').nextAll().not(':hidden').eq(0))
-		this.$('.cart_nav li').nextAll().not(':hidden').eq(0).children().click();
+		console.log(this.$('.cart_nav li').nextAll());
+		this.$('.cart_nav li.active').nextAll().not(':hidden').eq(0).children().click();
 		
 	},
 	
@@ -267,6 +276,7 @@ CartView = Backbone.View.extend({
 			this.$('[name="email"]').val(user.email);
 		}
 		
+	
 		
 		return this;
 	},

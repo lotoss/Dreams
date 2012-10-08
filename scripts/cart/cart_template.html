@@ -208,9 +208,18 @@
 </li>  
 </script>
 <!-- end cart_item_load_template -->
+
+
 <script type="text/xml" id="order_form">
 <!-- end box_form -->
+
 <section class="box_form order">
+	<div class="not_autorized">
+		<h1 class="title_block">Вы не авторизованы</h1>
+		<p>Для совершения заказа вы должны <a href="#" onclick="window.cart.set('user', {id: 10,firstname: 'Александр',	surename: 'Прокопенко',	phone: '+380637268477',	email: 'donald-dack@mail.ru', money: 25340, discount: true}); return false;">авторизироваться</a> или загерестрироваться.</p>
+	</div>
+	
+	<div class="autorized">
 	<h1 class="title_block">Оформление заказа</h1>
                    
 	<form class="form_simple" action="#">
@@ -366,7 +375,7 @@
 			</div>
 		</div>
 	</form>
-                    
+    </div>                
 	<div class="decor top"></div>
 	<div class="decor bot"></div>
 </section>

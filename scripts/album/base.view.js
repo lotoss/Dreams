@@ -232,7 +232,7 @@ BaseView = Backbone.View.extend({
 		this.$('#album').next().children('span').text(this.model.get('wholePrice'));
 		this.$('.free, .pro').children('span').text( parseInt(this.model.get('wholePrice') * CartOptions.dicsPro) );
 		
-		if( user && user.discount ){
+		if( cart.set('user') && cart.set('user').discount ){
 			this.$('.middle_side .pro').show();
 			this.$('.middle_side .free').hide();
 		} else {

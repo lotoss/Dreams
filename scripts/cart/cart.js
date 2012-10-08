@@ -73,7 +73,7 @@ Cart = Backbone.Model.extend({
 		this.on('editAlbum', this.editAlbum);
 		this.on('navigation', this.navigation);
 		this.on('addLink', this.addLink);
-		this.on('change:user', this.view.changeUser);
+		this.on('change:user', this.changeUser);
 		this.on('changeDelivery', this.changeDelivery);
 		this.on('pay', this.pay);
 		this.on('change:cards', this.changeCards);
@@ -82,6 +82,9 @@ Cart = Backbone.Model.extend({
 		this.validateAlbums();
 	},
 	
+	changeUser: function() {
+		this.view.changeUser().showTotalPrice();	
+	},
 	
 	addAlbum: function(){
 		if(window.album.id === undefined){

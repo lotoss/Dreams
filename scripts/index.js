@@ -23,7 +23,7 @@ options = {
 * страницы (если он загружает страницу авторизованным), 
 * либо после авторизации вызвав метод window.cart.set('user', UserData)
 */
-window.user = {
+/*window.user = {
 	id: 10,
 	firstname: 'Александр',
 	surename: 'Прокопенко',
@@ -31,9 +31,14 @@ window.user = {
 	email: 'donald-dack@mail.ru',
 	money: 25340,
 	discount: true
-}
+}*/
 
 
+window.regions = [
+	[1, 'Московский'],
+	[2, 'Питерский'],
+	[3, 'Питерский2']
+];
 
 debug = '';
 //debug = 'InitsDebug';
