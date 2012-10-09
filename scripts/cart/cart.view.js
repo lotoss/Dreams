@@ -7,6 +7,7 @@ CartView = Backbone.View.extend({
 		'click .tabs a': 'changeDelivery',
 		'click .order .positive .button_submit': 'pay',
 		'click .order .check input' : 'showTotalPrice',
+		'change .order #russia select' : 'changeCity',
 		'click .order .warning_input': function(event){
 			$(event.currentTarget).removeClass('warning_input').next().remove();
 		}
@@ -29,9 +30,47 @@ CartView = Backbone.View.extend({
 		this.list = $(tempBook).appendTo(this.$el);
 		$( $('#load_list').html() + $('#order_form').html() + $('#done').html()).appendTo(this.$el);
 		
+		
+		if(window.regions !== undefined) {
+			var regionsStr = '';
+			for (var i = 0; i < window.regions.length ; i++) {
+				regionsStr += '<option value="'+window.regions[i][0]+'">'+window.regions[i][1]+'</option>';
+			}
+			
+			this.$('#russia select[name="region"]').html(regionsStr).change();
+			setTimeout(function(){
+				this.$('#russia select[name="region"]').change();
+			}, 10);
+		}
+		
 		this.changeUser().render();
 		
 		this.timeout = null;
+		
+		//this.$('.order #russia select[name="region"]');
+	},
+	
+	changeCity: function(event) {
+	
+		var self = this;
+		$this = $(event.currentTarget);
+		if($this.attr('name') == 'city') {
+			CartOptions.deliveryPrice['#russia'] = parseInt( $this.children(':selected').attr('data-price') );
+			this.render().showTotalPrice();
+		} else {
+			$.get(CartOptions.citiesUrl +'/'+$this.val(), function(request){
+				var options = '';
+				for (var i = 0; i < request.length; i++) {
+					options += '<option data-price="' 
+						+ request[i][2] +'" value="' + request[i][0] +'">' + request[i][1] +'</option>';
+				}
+				
+				self.$('.order #russia select[name="city"]').html(options).selectBox('refresh').change();
+				
+			}, 'json');
+		}
+		
+		
 	},
 	
 	render: function(){

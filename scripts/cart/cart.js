@@ -34,6 +34,8 @@ CartOptions = {
 		'#present': 300
 	},
 	
+	citiesUrl : 'city',
+	
 	coverCards: {
 		price: 1900,
 		coverCardStampPice: 500,
