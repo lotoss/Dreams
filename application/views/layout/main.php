@@ -69,14 +69,14 @@
 			</ul>
 			<a href="" id="top_panel_logo">MyWed</a>
 			<ul id="user_nav" class="top_nav">
-				<li class="drop"><a href="#">OlgaN</a>
+				<li class="drop"><a href="#" onclick="window.cart.set('user', {id: 10,firstname: 'Александр',	surename: 'Прокопенко',	phone: '+380637268477',	email: 'donald-dack@mail.ru', money: 25340, discount: true}); return false;">OlgaN</a>
 					<dl>
 						<dd><a href="">Любимое</a></dd>
 						<dd><a href="">Персональный сайт</a></dd>
 						<dt>Редактировать</dt>
 						<dd><a href="">Личные данные</a></dd>
 						<dd><a href="">Портфолио</a></dd>
-						<dd class="exit"><a href="">Выйти</a></dd>
+						<dd class="exit"><a href="" onclick="window.cart.set('user'); return false;" >Выйти</a></dd>
 					</dl>
 				</li>
 				<li><a href="#" class="mail">Почта <span class="new">+5</span></a></li>
@@ -124,6 +124,7 @@
 						<a href="#popup1" class="gray pos1"></a>
 						<a href="#popup2" class="gray pos2"></a>
 						<a href="#popup3" class="gray pos3"></a>
+						<p>С начала 2010 года Dream Album выпускает полиграфические фотокниги премиум качества в переплётах трёх типов. Это книги в фотообложках, и книги в тканевых и кожаных переплётах.</p>
 					</li>
 					<li class="cofra">
 						<img src="images/dreamsalbum/uploads/cofra_prevu.png" width="664" height="351" />
@@ -131,16 +132,18 @@
 						<a href="#popup5" class="purpe pos2"></a>
 						<a href="#popup6" class="purpe pos3"></a>
 						<a href="#popup7" class="purpe pos4"></a>
+						<p>Кофр придаёт альбому дополнительную солидность, тем самым повышая его статус. Полностью обтянут тканью, поэтому идеально сочетается как с тканевым, так и с кожаным переплётом альбома.</p>
 					</li>
 					<li class="box">
 						<img src="images/dreamsalbum/uploads/box_prevu.png" width="750" height="350" />
 						<a href="#popup8" class="blue pos1"></a>
 						<a href="#popup9" class="blue pos2"></a>
 						<a href="#popup10" class="blue pos3"></a>
+						<p>Мы рекомендуем дополнительно упаковывать книги в недорогие декоративные коробочки, прежде чем отдавать их клиенту. Книга в коробочке смотрится гораздо лучше нежели просто «голая» книжка.</p>
 					</li>
 				</ul>
-				<p>Кофр придаёт альбому дополнительную солидность, тем самым повышая его статус. Полностью обтянут 
-тканью, поэтому идеально сочетается как с тканевым, так и с кожаным переплётом альбома.</p>
+				<!--<p>Кофр придаёт альбому дополнительную солидность, тем самым повышая его статус. Полностью обтянут 
+тканью, поэтому идеально сочетается как с тканевым, так и с кожаным переплётом альбома.</p>-->
 				<a class="next_step" href="#album"></a>
 			</div>
 			<!-- end prevu_page -->

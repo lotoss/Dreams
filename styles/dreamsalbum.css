@@ -345,7 +345,8 @@ a.google{background-position:-104px 0;}
 }
 .app_nav a:hover {
 	color:#f6c577;
-	border-bottom-color:#f6c577
+	border-bottom-color:#f6c577;
+	text-decoration:none;
 }
 .app_nav li {
 	display:inline-block;
@@ -410,12 +411,24 @@ a.google{background-position:-104px 0;}
 	position:relative;
 	/*overflow: hidden;*/
 	z-index: 1;
+	margin-bottom:125px;
 }
 
 #prevu_slider li{
 	display:block;
 }
-
+#prevu_slider .album p{
+	left:-160px;
+	top:-16px;
+}
+#prevu_slider .cofra p{
+	left:-53px;
+	top:-41px;
+}
+#prevu_slider .box p{
+	left:18px;
+	top:-55px;
+}
 
 #prevu_slider li{
 	position: absolute;
@@ -728,11 +741,11 @@ strong.price_small {
 .page .middle_side.square p{
 	margin-left:96px;
 }
-.page .middle_side p a, .discount_mywed a{
+a, .page .middle_side p a, .discount_mywed a{
 	text-decoration: none;
 	color: #79dedf;
 }
-.page .middle_side p a:hover, .discount_mywed a:hover{
+a:hover, .page .middle_side p a:hover, .discount_mywed a:hover{
 	text-decoration:underline;
 }
 .middle_side .book_price {
@@ -1256,6 +1269,10 @@ strong.price_small {
 a.item_contents, .link {
 	color:#ffd48f;
 	border-bottom:1px dotted #ffd48f;
+}
+
+a.item_contents:hover, .link:hover{
+	text-decoration: none;
 }
 
 a.item_edit{
@@ -2048,6 +2065,10 @@ label.check {
 	text-decoration:underline;
 }
 
+.selectBox-options li a{
+	color:#000;
+	text-decoration: none;
+}
 /* End Footer
 --------------------------------------------------------------------------------------------------------*/
 

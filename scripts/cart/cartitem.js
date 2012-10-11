@@ -13,6 +13,20 @@ CartElement = Backbone.Model.extend({
 		this.view = new CartElementView({ model: this });
 	},
 	
+	defaults: {
+		cover_id: null,
+		color_id: null,
+		forzatz_id: null,
+		stamp_id: null,
+		stamp_color_id: null,
+		box_id: null,
+		box_stamp_id: null,
+		box_stamp_color_id: null,
+		cards: null,
+		cardsStamp: null
+		
+	},
+	
 	//Events
 	editAlbum: function(){
 		this.collection.parent.trigger('editAlbum', this.attributes );
@@ -56,8 +70,10 @@ CartElement = Backbone.Model.extend({
 	
 	//Преобразование данных
 	parseData: function(){
+		if (this.get('cards') === true)
+			return this;
 		
-		var data = {};
+		var data = this.defaults;
 		
 		var color = this.attributes['color'];
 		var cover = this.attributes['cover'];
@@ -75,9 +91,9 @@ CartElement = Backbone.Model.extend({
 		data['coverPagePrice'] = ( this.attributes['pages'] - cover.get('minPage') ) * cover.get('pagePrice');
 		data['cover_id'] = cover.get('cover_id');
 		data['color_id'] = color.get('color_id');
-		data['forzatz_id'] = 0;
+		/*data['forzatz_id'] = 0;
 		data['stamp_id'] = 0;
-		data['stamp_color_id'] = 0;
+		data['stamp_color_id'] = 0;*/
 		
 		if( cover.get('type') == 'photo' ){
 			//Форзац
@@ -89,6 +105,7 @@ CartElement = Backbone.Model.extend({
 			
 			//Тиснение
 			var stamp = this.attributes['stamp'];
+			
 			data['stampType'] = 'Нет';
 			if(stamp !== null){
 				data['stampType'] = stamp.get('labels')[0];
@@ -108,9 +125,9 @@ CartElement = Backbone.Model.extend({
 		//Короб
 		var box = this.attributes['box'];
 		data['boxType'] = 'Нет';
-		data['box_id'] = 0;
+		/*data['box_id'] = 0;
 		data['box_stamp_id'] = 0;
-		data['box_stamp_color_id'] = 0;
+		data['box_stamp_color_id'] = 0;*/
 		if(box !== null){
 			data['title'] += ',<br/>' + box.get('labels')[0].toLocaleLowerCase();   
 			data['boxType'] = box.get('labels')[0];
@@ -151,7 +168,7 @@ CartElement = Backbone.Model.extend({
 		data['wholePrice'] = this.attributes['wholePrice'];
 		data['discPerAlbum'] = cover.get('discPerAlbum');
 		data['url'] = this.attributes['url'];
-
+		
 		this.clear().set(data);
 		
 		return this;

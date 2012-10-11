@@ -34,15 +34,14 @@ CartOptions = {
 		'#present': 300
 	},
 	
-	citiesUrl : 'city',
-	
 	coverCards: {
 		price: 1900,
 		coverCardStampPice: 500,
-		slider: [	'images/dreamsalbum/uploads/popup_cont1.jpg',
-					'images/dreamsalbum/uploads/popup_cont2.jpg',
-					'images/dreamsalbum/uploads/popup_cont1.jpg',
-					'images/dreamsalbum/uploads/popup_cont2.jpg'	]
+		slider: [	'images/dreamsalbum/uploads/cards/alot24.jpg',
+					'images/dreamsalbum/uploads/cards/alot25.jpg',
+					'images/dreamsalbum/uploads/cards/alot26.jpg',
+					'images/dreamsalbum/uploads/cards/white11.jpg',
+					'images/dreamsalbum/uploads/cards/white12.jpg' 	]
 	} 
 		
 };
@@ -80,11 +79,17 @@ Cart = Backbone.Model.extend({
 		this.on('pay', this.pay);
 		this.on('change:cards', this.changeCards);
 		
+		this.on('change:user', function(){
+			console.error('change:user');
+			console.log(this.get('user'));
+		});
+		
 		this.get('albums').change();
 		this.validateAlbums();
 	},
 	
 	changeUser: function() {
+		album.view.render();
 		this.view.changeUser().showTotalPrice();	
 	},
 	
@@ -156,7 +161,7 @@ Cart = Backbone.Model.extend({
 		var albums = this.get('albums');
 		var albumsReady = true;
 		albums.each(function(val) {
-			if( !val.get('link') &&  !(val.get('title') == 'cards' && val.get('stamp') == false) )
+			if( !val.get('link') &&  !(val.get('cards') == true && val.get('cardsStamp') == false) )
 				albumsReady = false;
 		});
 		
@@ -176,6 +181,8 @@ Cart = Backbone.Model.extend({
 		this.get('albums').forEach(function(el){
 			data.albums.push(el.attributes);
 		});
+		/*console.log('Order');
+		console.log(data);*/
 		
 		$.post(CartOptions.order, data, function payCallback(data){
 			if(data.status == 'ok') {
@@ -204,7 +211,8 @@ Cart = Backbone.Model.extend({
 				title: 'cards',
 				wholePrice: 0,
 				quantity: 1,
-				stamp: this.get('cardsStamp'),
+				cardsStamp: this.get('cardsStamp'),
+				cards: true,
 				discPerAlbum: 0, 
 				last: '1'
 			});
@@ -225,7 +233,7 @@ Cart = Backbone.Model.extend({
 		
 		popupC.view.renderCards = function(){
 			this.$('.price_small span').text(
-				 CartOptions.coverCards.price + ( cart.get('cardsStamp') ? CartOptions.coverCards.coverCardStampPice : 0 )
+				CartOptions.coverCards.price + ( cart.get('cardsStamp') ? CartOptions.coverCards.coverCardStampPice : 0 )
 			);
 			
 			if( cart.get('cardsStampChecked') == false ) {

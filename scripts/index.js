@@ -1,11 +1,7 @@
 options = {
-	//colorCollUrl: '/ajax/colors',
-	//coverCollUrl: '/ajax/covers',
 	popupCollUrl: '/ajax/popups',
-	/*forzatzCollUrl: '/ajax/forzatz',
-	stampsUrl: '/ajax/stamps',
-	boxesUrl: '/ajax/boxes',*/
 	dataUrl: '/ajax/data',
+	citiesUrl: '/city', 	
 	
 	stampsImgSrc: '/images/dreamsalbum/uploads/stamps',
 	colorsFolder: '/images/dreamsalbum/uploads/materials',

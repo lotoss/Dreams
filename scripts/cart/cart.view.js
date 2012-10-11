@@ -58,7 +58,7 @@ CartView = Backbone.View.extend({
 			CartOptions.deliveryPrice['#russia'] = parseInt( $this.children(':selected').attr('data-price') );
 			this.render().showTotalPrice();
 		} else {
-			$.get(CartOptions.citiesUrl +'/'+$this.val(), function(request){
+			$.get(options.citiesUrl +'/'+$this.val(), function(request){
 				var options = '';
 				for (var i = 0; i < request.length; i++) {
 					options += '<option data-price="' 
@@ -110,7 +110,7 @@ CartView = Backbone.View.extend({
 		}
 		
 		if (this.model.get('albums') 
-			&& this.model.get('albums').length != 0
+			&& this.model.get('albums').length == 1
 			&& this.model.get('cards') == true 
 			&& this.model.get('cardsStamp') == false) {
 			this.$('.cart_nav li').eq(2).removeClass('disable');
@@ -301,7 +301,7 @@ CartView = Backbone.View.extend({
 		
 		if( $(event.currentTarget).hasClass('disable') )
 			return;
-		console.log(this.$('.cart_nav li').nextAll());
+		
 		this.$('.cart_nav li.active').nextAll().not(':hidden').eq(0).children().click();
 		
 	},
