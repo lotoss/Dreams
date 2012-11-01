@@ -8,9 +8,18 @@
 			'type'		=> 	'photo',	
 			'stamping'	=> 	false,
 			'basePrice'	=> 	4700,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	48,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	48
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	60
+				),
+			),
 			'labels' => array(
 				'format' => array('Большой квадрат', '29х29см'),
 				'type' => 'Фотообложка',
@@ -24,9 +33,18 @@
 			'type'		=> 	'photo',	
 			'stamping'	=> 	false,
 			'basePrice'	=> 	3300,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	33,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	40
+				),
+			),
 			'labels' => array(
 				'format' => array('Малый квадрат', '19х19см'),
 				'type' => 'Фотообложка',
@@ -40,9 +58,18 @@
 			'type'		=> 	'photo',	
 			'stamping'	=> 	false,
 			'basePrice'	=> 	4700,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	48,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	48
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	60
+				),
+			),
 			'labels' => array(
 				'format' => array('Большой альбом', '34х28,5см'),
 				'type' => 'Фотообложка',
@@ -56,9 +83,18 @@
 			'type'		=> 	'photo',	
 			'stamping'	=> 	false,
 			'basePrice'	=> 	3300,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	33,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	40
+				),
+			),
 			'labels' => array(
 				'format' => array('Малый альбом', '24,5х21см'),
 				'type' => 'Фотообложка'
@@ -73,9 +109,18 @@
 			'type'		=> 	'cloth',	
 			'stamping'	=> 	true,
 			'basePrice'	=> 	6500,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	48,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	48
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	60
+				),
+			),
 			'labels' => array(
 				'format' => array('Большой квадрат', '29х29см'),
 				'type' => 'Ткань',
@@ -89,9 +134,18 @@
 			'type'		=> 	'cloth',	
 			'stamping'	=> 	true,
 			'basePrice'	=> 	4800,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	33,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	40
+				),
+			),
 			'labels' => array(
 				'format' => array('Малый квадрат', '19х19см'),
 				'type' => 'Ткань',
@@ -105,9 +159,18 @@
 			'type'		=> 	'cloth',	
 			'stamping'	=> 	true,
 			'basePrice'	=> 	6500,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	48,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	48
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	60
+				),
+			),
 			'labels' => array(
 				'format' => array('Большой альбом', '34х28,5см'),
 				'type' => 'Ткань',
@@ -121,9 +184,18 @@
 			'type'		=> 	'cloth',	
 			'stamping'	=> 	true,
 			'basePrice'	=> 	4800,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	33,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	40
+				),
+			),
 			'labels' => array(
 				'format' => array('Малый альбом', '24,5х21см'),
 				'type' => 'Ткань',
@@ -138,9 +210,18 @@
 			'type'		=> 	'leather',	
 			'stamping'	=> 	true,
 			'basePrice'	=> 	9500,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	48,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	48
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	60
+				),
+			),
 			'labels' => array(
 				'format' => array('Большой квадрат', '29х29см'),
 				'type' => 'Натуральная кожа',
@@ -154,9 +235,18 @@
 			'type'		=> 	'leather',	
 			'stamping'	=> 	true,
 			'basePrice'	=> 	7500,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	33,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	40
+				),
+			),
 			'labels' => array(
 				'format' => array('Малый квадрат', '19х19см'),
 				'type' => 'Натуральная кожа',
@@ -170,9 +260,18 @@
 			'type'		=> 	'leather',	
 			'stamping'	=> 	true,
 			'basePrice'	=> 	9500,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	48,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	48
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	60
+				),
+			),
 			'labels' => array(
 				'format' => array('Большой альбом', '34х28,5см'),
 				'type' => 'Натуральная кожа',
@@ -186,9 +285,18 @@
 			'type'		=> 	'leather',	
 			'stamping'	=> 	true,
 			'basePrice'	=> 	7500,
-			'minPage' 	=> 	50,
-			'maxPage' 	=> 	120,
-			'pagePrice' => 	33,
+			'pages' => array(
+				'simple' => array(
+					'minPage' 	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				),
+				'layflat' => array(
+					'minPage' 	=> 	30,
+					'maxPage' 	=> 	80,
+					'pagePrice' => 	40
+				),
+			),
 			'labels' => array(
 				'format' => array('Малый альбом', '24,5х21см'),
 				'type' => 'Натуральная кожа',

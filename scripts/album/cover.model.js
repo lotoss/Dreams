@@ -7,7 +7,8 @@ AlbumConst = AlbumConst.extend({
 		lastCloth: 'liloc',
 		lastLeather: 'brownl',
 		format: 'small_rect',
-		pages: 0
+		pages: 0,
+		paperType: false
 	}),
 	
 	//Разширение инициализации
@@ -34,6 +35,8 @@ AlbumConst = AlbumConst.extend({
 		this.on('changeFormat', this.changeFormat);
 		this.on('changeCover', this.changeCover);
 		this.on('changePages', this.changePages);
+		this.on('changePaperType', this.changePaperType);
+		
 		
 		//Загрузка Коллекций
 		this.on('load:colors', this.loadColor);
@@ -77,7 +80,7 @@ AlbumConst = AlbumConst.extend({
 		
 		//Поиск данных о формате (по размеру и типу) и установка
 		this.activeCover  = this.covers.find(function(el){  return el.get('format') == self.get('format') && el.get('type') == self.get('coverType'); })
-		this.set('cover', this.activeCover);
+		this.setActiveCover(this.activeCover);
 		
 		//Установка страниц и перещет цены
 		this.setPages().calcPrice();
@@ -107,7 +110,7 @@ AlbumConst = AlbumConst.extend({
 		
 		//Поиск данных о формате (по размеру и типу) и установка					
 		this.activeCover  = this.covers.find(function(el){  return el.get('format') == self.get('format') && el.get('type') == self.get('coverType'); });
-		this.set('cover', this.activeCover);
+		this.setActiveCover(this.activeCover);
 		
 		
 		//Установка страниц и перещет цены
@@ -126,8 +129,18 @@ AlbumConst = AlbumConst.extend({
 		
 		this.setPages(_diff).calcPrice();
 		this.views[0].render().showPagesInfo();
-		
 		this.setURL();
+	},
+	
+	changePaperType: function(value) {
+		
+		this.set('paperType', value);
+		
+		var data = this.activeCover.get('pages')[this.get('paperType') ? 'layflat' : 'simple'];
+		this.activeCover.set('minPage', data['minPage']);
+		this.activeCover.set('maxPage', data['maxPage']);
+		this.activeCover.set('pagePrice', data['minPage']);
+		this.views[0].render().showPagesInfo();	
 	},
 	
 	setPages: function(_diff){
@@ -178,12 +191,9 @@ AlbumConst = AlbumConst.extend({
 	loadCover: function(){
 		var self = this;
 		
-		
-		
 		//Поиск данных о формате (по размеру и типу) и установка
 		this.activeCover  = this.covers.find(function(el){  return el.get('format') == self.get('format') && el.get('type') == self.get('coverType'); });
-		this.set('cover', this.activeCover, { silent: true });
-		
+		this.setActiveCover(this.activeCover);
 		this.set('pages', this.activeCover.get('minPage') + this.get('pages') );
 		
 		//Установка страниц и перещет цены
@@ -192,6 +202,15 @@ AlbumConst = AlbumConst.extend({
 		//Draw альбома
 		this.views[0].showPagesInfo();
 		this.trigger('ready:covers','ready:covers');
+		
+	},
+	
+	setActiveCover: function(newCover) {
+		this.set('cover', newCover, { silent: true });
+		var data = newCover.get('pages')[this.get('paperType') ? 'layflat' : 'simple'];
+		newCover.set('minPage', data['minPage']);
+		newCover.set('maxPage', data['maxPage']);
+		newCover.set('pagePrice', data['minPage']);
 		
 	},
 		

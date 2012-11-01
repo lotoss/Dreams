@@ -5,7 +5,7 @@ BaseView = Backbone.View.extend({
 	}, 
 	
 	showNav: function() {
-		var $nav = this.$('.app_nav').not('.cover ul, .app_nav_alt');
+		var $nav = this.$('.app_nav').not('.cover ul, .app_nav_alt, .paperType ul');
 		
 		//форзац или тиснение в зависимости от материала
 		if(this.model.get('coverType') == 'photo')
@@ -93,6 +93,7 @@ BaseView = Backbone.View.extend({
 				this.$('.middle_side').removeClass('square');
 				break;
 		}
+		
 		
 		//Отображение размера формата
 		if(this.model.get('activeStep') == 0){

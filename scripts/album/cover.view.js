@@ -6,10 +6,11 @@ CoverView = BaseView.extend({
 		'click .color a' : 'controlClick',
 		'click .cover a' : 'controlClick',
 		'click .format a' : 'controlClick',
+		'click .paperType a' : 'controlClick',
 		'click .pages a' : 'arrowClick',
 		'click .album_nav a' : 'navClick',
 		'click .next_step' : 'nextStep',
-		'mousedown  .pages a, selectstart  .pages a,' : function() {return false;}
+		'mousedown  .pages a, selectstart  .pages a' : function() {return false;}
 		
 	},
 	
@@ -26,46 +27,6 @@ CoverView = BaseView.extend({
 		this.$('.cover li').eq(cover == 'leather' ? 0 : cover == 'cloth' ? 1 : 2 ).addClass('active');
 		
 	},
-	
-	//Отображение 
-	/*render: function(){
-		
-		//Смена цвета изображения
-		
-		$(this.album).css('background-image', 'url(' + this.model.getColorSprite() + ')');
-		
-		var format = this.model.get('format');
-		this.$('.format li').removeClass('active').eq(format == 'big_square' ? 0 : format == 'small_square' ? 1 : format == 'big_rect' ? 2 : 3 ).addClass('active');
-		
-		var cover = this.model.get('coverType');
-		
-		this.$('.cover li').removeClass('active').eq(cover == 'leather' ? 0 : cover == 'cloth' ? 1 : 2 ).addClass('active');
-		
-		//Добавление/удаление формата квадрата
-		var format = this.model.get('format');
-		switch( format ){
-			case 'big_square': 
-			case 'small_square': 
-				this.album.addClass('square');
-				break;
-				
-			case 'big_rect': 
-			case 'small_rect': 
-				this.album.removeClass('square');
-				break;
-		}
-		
-		//Отображение размера формата
-		this.album.find('.width').html(options.formatSizes[format][0] + ' см');
-		this.album.find('.height').html(options.formatSizes[format][1] + ' см');
-		
-		
-		
-		//Отображение цены
-		this.album.next().children('span').text(this.model.get('wholePrice'));
-		
-		return this;
-	},*/
 	
 	
 	//Show Colors of Curren Type and show current color
@@ -147,6 +108,9 @@ CoverView = BaseView.extend({
 			
 		if($this.is('.color li') )
 			this.model.trigger('changeColor', $this.index() );
+			
+		if($this.is('.paperType li') )
+			this.model.trigger('changePaperType', $this.children().attr('data-value') );
 		
 	},
 	
