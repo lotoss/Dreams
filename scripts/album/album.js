@@ -163,6 +163,7 @@ AlbumConst = Backbone.Model.extend({
 		//Установка типа обложки
 		var cover = this.get('coverType');
 		cover = cover == 'leather' ? 0 : cover == 'cloth' ? 1 : 2;
+		cover += this.get('paperType') ? 3 : 0;
 		url += String.fromCharCode(cover + 65);
 		
 		//Установка формата
@@ -253,6 +254,9 @@ AlbumConst = Backbone.Model.extend({
 			return data;
 			
 		var cover = parts[2].charCodeAt(0) - 65;
+		if (cover > 2) 
+			data['paperType'] = true;
+		cover = cover % 3;
 		cover = cover == 0 ? 'leather' : cover == 1 ? 'cloth' : 'photo';
 		data['coverType'] = cover;
 		

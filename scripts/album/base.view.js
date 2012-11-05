@@ -76,6 +76,10 @@ BaseView = Backbone.View.extend({
 		var format = this.model.get('format');
 		this.$('.format li').removeClass('active').eq(format == 'big_square' ? 0 : format == 'small_square' ? 1 : format == 'big_rect' ? 2 : 3 ).addClass('active');
 		
+		//Тип бумаги
+		var paperType = this.model.get('paperType');
+		this.$('.paperType li').removeClass('active').eq(paperType ? 1 : 0 ).addClass('active');
+		
 		var cover = this.model.get('coverType');
 		
 		this.$('.cover li').removeClass('active').eq(cover == 'leather' ? 0 : cover == 'cloth' ? 1 : 2 ).addClass('active');

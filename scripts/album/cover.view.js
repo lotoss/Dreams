@@ -11,7 +11,6 @@ CoverView = BaseView.extend({
 		'click .album_nav a' : 'navClick',
 		'click .next_step' : 'nextStep',
 		'mousedown  .pages a, selectstart  .pages a' : function() {return false;}
-		
 	},
 	
 	initialize: function(){
@@ -77,7 +76,7 @@ CoverView = BaseView.extend({
 		this.$('.pages input').val( this.model.get('pages') );
 		
 		//Макс. кол-во страниц
-		this.$('.pages .min_pages').text( this.model.activeCover.get('minPage') );
+		this.$('.pages .min_pages').text( this.model.activeCover.get('default') );
 		
 		//Цена за пару страниц
 		this.$('.pages .par_price').text( this.model.activeCover.get('pagePrice') * 2 );
@@ -85,8 +84,10 @@ CoverView = BaseView.extend({
 		//Цена альбома
 		this.$('#album_price span').text( this.model.activeCover.get('basePrice') );
 		//Цена доп. страниц
+		var addPages = this.model.get('pages') - this.model.activeCover.get('default');
+		addPages = addPages < 0 ? 0 : addPages;
 		this.$('#pages_price span').text( 
-			(this.model.get('pages')- this.model.activeCover.get('minPage'))  * this.model.activeCover.get('pagePrice')
+			addPages * this.model.activeCover.get('pagePrice')
 		);
 		return this;
 	},
@@ -95,7 +96,7 @@ CoverView = BaseView.extend({
 	controlClick: function(event){
 		event.preventDefault();
 		var $this = $(event.currentTarget).parent();
-		if(  $this.hasClass('active') )
+		if(  $this.hasClass('active') || $this.hasClass('disable') )
 			return;
 		
 		$this.addClass('active').siblings('.active').removeClass('active');

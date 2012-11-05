@@ -10,15 +10,17 @@
 			'basePrice'	=> 	4700,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	60,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	48
+					'pagePrice' => 	33
 				),
 				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	60
-				),
+					'minPage' 	=> 	32,
+					'default'  	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	48
+				)
 			),
 			'labels' => array(
 				'format' => array('Большой квадрат', '29х29см'),
@@ -35,15 +37,17 @@
 			'basePrice'	=> 	3300,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	60,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	33
+					'pagePrice' => 	25
 				),
 				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	40
-				),
+					'minPage' 	=> 	32,
+					'default'  	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				)
 			),
 			'labels' => array(
 				'format' => array('Малый квадрат', '19х19см'),
@@ -60,15 +64,11 @@
 			'basePrice'	=> 	4700,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	60,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	48
-				),
-				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	60
-				),
+					'pagePrice' => 	33
+				)
 			),
 			'labels' => array(
 				'format' => array('Большой альбом', '34х28,5см'),
@@ -85,15 +85,17 @@
 			'basePrice'	=> 	3300,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	60,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	33
+					'pagePrice' => 	25
 				),
 				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	40
-				),
+					'minPage' 	=> 	32,
+					'default'  	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				)
 			),
 			'labels' => array(
 				'format' => array('Малый альбом', '24,5х21см'),
@@ -111,15 +113,17 @@
 			'basePrice'	=> 	6500,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	80,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	48
+					'pagePrice' => 	33
 				),
 				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	60
-				),
+					'minPage' 	=> 	32,
+					'default'  	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	48
+				)
 			),
 			'labels' => array(
 				'format' => array('Большой квадрат', '29х29см'),
@@ -136,15 +140,17 @@
 			'basePrice'	=> 	4800,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	80,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	33
+					'pagePrice' => 	25
 				),
 				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	40
-				),
+					'minPage' 	=> 	32,
+					'default'  	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				)
 			),
 			'labels' => array(
 				'format' => array('Малый квадрат', '19х19см'),
@@ -161,15 +167,11 @@
 			'basePrice'	=> 	6500,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	80,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	48
-				),
-				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	60
-				),
+					'pagePrice' => 	33
+				)
 			),
 			'labels' => array(
 				'format' => array('Большой альбом', '34х28,5см'),
@@ -186,15 +188,17 @@
 			'basePrice'	=> 	4800,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	80,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	33
+					'pagePrice' => 	25
 				),
 				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	40
-				),
+					'minPage' 	=> 	32,
+					'default'  	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				)
 			),
 			'labels' => array(
 				'format' => array('Малый альбом', '24,5х21см'),
@@ -212,15 +216,17 @@
 			'basePrice'	=> 	9500,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	80,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	48
+					'pagePrice' => 	33
 				),
 				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	60
-				),
+					'minPage' 	=> 	32,
+					'default'  	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	48
+				)
 			),
 			'labels' => array(
 				'format' => array('Большой квадрат', '29х29см'),
@@ -237,15 +243,17 @@
 			'basePrice'	=> 	7500,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	80,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	33
+					'pagePrice' => 	25
 				),
 				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	40
-				),
+					'minPage' 	=> 	32,
+					'default'  	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				)
 			),
 			'labels' => array(
 				'format' => array('Малый квадрат', '19х19см'),
@@ -262,15 +270,11 @@
 			'basePrice'	=> 	9500,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	80,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	48
-				),
-				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	60
-				),
+					'pagePrice' => 	33
+				)
 			),
 			'labels' => array(
 				'format' => array('Большой альбом', '34х28,5см'),
@@ -287,15 +291,17 @@
 			'basePrice'	=> 	7500,
 			'pages' => array(
 				'simple' => array(
-					'minPage' 	=> 	50,
+					'minPage' 	=> 	32,
+					'default'  	=> 	80,
 					'maxPage' 	=> 	120,
-					'pagePrice' => 	33
+					'pagePrice' => 	25
 				),
 				'layflat' => array(
-					'minPage' 	=> 	30,
-					'maxPage' 	=> 	80,
-					'pagePrice' => 	40
-				),
+					'minPage' 	=> 	32,
+					'default'  	=> 	50,
+					'maxPage' 	=> 	120,
+					'pagePrice' => 	33
+				)
 			),
 			'labels' => array(
 				'format' => array('Малый альбом', '24,5х21см'),
