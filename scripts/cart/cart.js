@@ -16,12 +16,14 @@ CartOptions = {
 		boxStampType: 'Тиснение на коробе',
 		boxStampColor: 'Цвет тиснения',
 		boxStampLogo: 'Логотип фотографа',
-		forzatz: 'Форзац'
+		forzatz: 'Форзац',
+		paperType: 'Бумага'
 	},
 	
 	value: {
 		coverFhoto: 'Фотообложка',
-		stampLogoPrice: 500
+		stampLogoPrice: 500,
+		paperType: ['Обычная', 'LayFlat']
 	},
 	
 	url: 'cart',

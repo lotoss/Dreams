@@ -84,6 +84,8 @@ CartElement = Backbone.Model.extend({
 		
 		//Покрытие
 		data['coverType'] = cover.get('labels').type;
+		data['paperType'] = this.attributes['paperType'];
+		console.log(data['paperType'], this.attributes['paperType'])
 		data['coverFormat'] = cover.get('labels').format[0] + ' ' + cover.get('labels').format[1];
 		data['coverColor'] = color.get('title');
 		data['coverFormatPrice'] = cover.get('basePrice');
@@ -212,11 +214,18 @@ CartElementView = Backbone.View.extend({
 	//Установка св-в обложки
 	getItemCoverProps: function(album){
 		var attributes = [];
-		
+		console.error(album.toJSON());
 		//Тип Обложки
 		attributes.push( {
 			key: CartOptions.label.coverType,
 			value: album.get('coverType'),
+			price: 0
+		} );
+		
+		//Тип бумаги
+		attributes.push( {
+			key: CartOptions.label.paperType,
+			value: CartOptions.value.paperType[album.get('paperType') ? 1 : 0],
 			price: 0
 		} );
 		

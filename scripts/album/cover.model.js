@@ -37,7 +37,6 @@ AlbumConst = AlbumConst.extend({
 		this.on('changePages', this.changePages);
 		this.on('changePaperType', this.changePaperType);
 		
-		
 		//Загрузка Коллекций
 		this.on('load:colors', this.loadColor);
 		this.on('load:covers', this.loadCover);
@@ -136,23 +135,16 @@ AlbumConst = AlbumConst.extend({
 		if (value)
 			this.set('paperType', !!parseInt(value));
 			
-		if (this.activeCover.get('pages')['layflat']) {
-			var data = this.activeCover.get('pages')[this.get('paperType') ? 'layflat' : 'simple'];
-		} else {
-			var data = this.activeCover.get('pages')['simple'];
-		}
-		
-		this.activeCover.set('minPage', data['minPage']);
-		this.activeCover.set('maxPage', data['maxPage']);
-		this.activeCover.set('default', data['default']);
-		this.activeCover.set('pagePrice', data['pagePrice']);
+		this.setActiveCover(this.activeCover);
+			
 		this.setPages().views[0].showPagesInfo();
 		this.setURL();
-		console.log(['changePaper', this.activeCover.toJSON()]);
+		
 	},
 	
 	setPages: function(_diff){
 		_diff = _diff || 0;
+		
 		var pages = this.get('pages') + _diff,
 			min_pages = this.activeCover.get('minPage'),
 			max_pages = this.activeCover.get('maxPage');
@@ -164,6 +156,8 @@ AlbumConst = AlbumConst.extend({
 			pages = max_pages;
 		
 		this.set('pages', pages);
+		if (_diff !== 0)
+			this.set('setPages', true);
 		
 		return this;
 	},
@@ -201,11 +195,11 @@ AlbumConst = AlbumConst.extend({
 		
 		//Поиск данных о формате (по размеру и типу) и установка
 		this.activeCover  = this.covers.find(function(el){  return el.get('format') == self.get('format') && el.get('type') == self.get('coverType'); });
-		this.setActiveCover(this.activeCover);
+		this.setActiveCover(this.activeCover, true);
 		
 		if (this.activeCover.get('minPage') + this.get('pages') !== this.activeCover.get('default') && this.get('pages') !== 0)
 			this.set('setPages', true);
-		console.error(this.get('setPages'))
+		
 		this.set('pages', this.get('setPages') ?  this.activeCover.get('minPage') + this.get('pages') : this.activeCover.get('default') );
 		
 		//Установка страниц и пересчет цены
@@ -217,7 +211,7 @@ AlbumConst = AlbumConst.extend({
 		
 	},
 	
-	setActiveCover: function(newCover) {
+	setActiveCover: function(newCover, presetPages) {
 		
 		this.set('cover', newCover, { silent: true });
 		
@@ -233,6 +227,10 @@ AlbumConst = AlbumConst.extend({
 		newCover.set('maxPage', data['maxPage']);
 		newCover.set('default', data['default']);
 		newCover.set('pagePrice', data['pagePrice']);
+		
+		if ( !this.get('setPages') && !presetPages) 
+			this.set('pages', newCover.get('default')  );
+			
 	},
 		
 	calcPrice: function(extend){
