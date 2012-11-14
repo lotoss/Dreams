@@ -16,12 +16,12 @@ BoxView = BaseView.extend({
 		var self = this;
 		
 		
-		if(this.model.get('coverType') == 'photo'){
+		/*if(this.model.get('coverType') == 'photo'){
 			this.$('.back_cover li').eq(1).addClass('disable');
 			var boxType = this.model.get('box') ? 0 : 2;
 		} else {
 			this.$('.back_cover li').eq(1).removeClass('disable');
-		}
+		}*/
 		
 		var boxType = !this.model.get('box') ? 2 : this.model.get('box').get('type') == 'box' ? 0 : 1;
 		

@@ -65,7 +65,8 @@ AppRoute = Backbone.Router.extend({
 		'done' : 'done',
 		'stamp' : 'stamp',
 		'box' : 'box',
-		'boxstamp' : 'boxstamp'
+		'boxstamp' : 'boxstamp',
+		'success-:id': 'success'
 		
 	},
 	
@@ -158,6 +159,16 @@ AppRoute = Backbone.Router.extend({
 	
 	done: function(){
 		window.blockC.show('done');
+	},
+	
+	success: function(id) {
+		
+		popupC.hide();
+		
+		
+		cart.openCart();
+		$('#footer .discount').hide();
+		//window.route.navigate('#cart');
 	}
 		
 });

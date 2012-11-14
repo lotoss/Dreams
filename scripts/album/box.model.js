@@ -34,11 +34,10 @@ AlbumConst = AlbumConst.extend({
 	//Box events
 	changeBoxType: function(data){
 		
-		
 		var type = data == 0 ? 'box' : data == 1 ? 'cofr' : null;
+		
 		if(!type) {
 			this.set('box', null);
-			
 		} else {
 			this.boxColors.reset( this.boxes.filter(function(el){ return el.get('type') == type; }) );
 			this.boxColors.comparator = function(chapter){
@@ -71,13 +70,13 @@ AlbumConst = AlbumConst.extend({
 		boxType = !boxType ? 2 : boxType.get('type') == 'box' ? 0 : 1
 		this.changeBoxType(boxType);
 			
-		if(this.get('coverType') == 'photo' && this.get('box') && this.get('box').get('type') == 'cofr' ){
+		/*if(this.get('coverType') == 'photo' && this.get('box') && this.get('box').get('type') == 'cofr' ){
 			
 			this.boxColors.reset( this.boxes.where({type: 'box'}) );//filter(function(el){ return el.get('type') == 'box'; }) );
 			
 			this.set('box', this.boxColors.at(0) );
 			this.view.showBoxInfo();
-		}
+		}*/
 		this.views[3].showBoxInfo();
 		return this;
 	},

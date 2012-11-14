@@ -1060,6 +1060,9 @@ a:hover, .page .middle_side p a:hover, .discount_mywed a:hover{
 .boxstamp .stamp_slider .prev, .boxstamp .stamp_slider .next,.boxstamp #album .stamp_slider{
 	display:block;
 }
+.boxstamp #album.photo .stamp_slider {
+	display: none;
+}
 .album_page .height, .album_page .width{
 	display:block;
 }

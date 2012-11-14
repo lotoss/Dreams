@@ -71,7 +71,11 @@ BaseView = Backbone.View.extend({
 		
 		//Цвет альбома
 		this.$('#album').css('background-image', 'url(' + this.model.getColorSprite() + ')');
-		
+		if (this.model.get('coverType') == 'photo' ) {
+			this.$('#album').addClass('photo');
+		} else {
+			this.$('#album').removeClass('photo');
+		}
 		//Формат альбома
 		var format = this.model.get('format');
 		this.$('.format li').removeClass('active').eq(format == 'big_square' ? 0 : format == 'small_square' ? 1 : format == 'big_rect' ? 2 : 3 ).addClass('active');

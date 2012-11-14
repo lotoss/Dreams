@@ -139,7 +139,8 @@
 			'name' => 'photo',
 			'type' => 'photo',
 			'src' => 'photo.jpg',
-			'labels' => array('фотообложке')
+			'labels' => array('фотообложке'),
+			'cofr' => array('flex', 'red')
 		),
 		// Тут из другой таблицы
 		//Stamp Colors

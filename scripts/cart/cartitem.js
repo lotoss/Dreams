@@ -214,7 +214,7 @@ CartElementView = Backbone.View.extend({
 	//Установка св-в обложки
 	getItemCoverProps: function(album){
 		var attributes = [];
-		console.error(album.toJSON());
+		
 		//Тип Обложки
 		attributes.push( {
 			key: CartOptions.label.coverType,
