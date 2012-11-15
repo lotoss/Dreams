@@ -164,11 +164,17 @@ AppRoute = Backbone.Router.extend({
 	success: function(id) {
 		
 		popupC.hide();
-		
-		
-		cart.openCart();
+		blockC.show('basket');	
+		$('#control li').removeClass('active').eq(1).addClass('active');
+		cart.set({activeStep: 3, doneStep: 3}).view.render();
 		$('#footer .discount').hide();
-		//window.route.navigate('#cart');
+		
+		cart.view.$('section.done .item_title span').text(id);
+		cart.view.$('section.done .done').hide();
+		cart.view.$('section.done .success').show();
+				
+		
+		window.route.navigate('#success-'+id);
 	}
 		
 });

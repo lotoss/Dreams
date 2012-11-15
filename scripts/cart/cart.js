@@ -187,6 +187,9 @@ Cart = Backbone.Model.extend({
 		$.post(CartOptions.order, data, function payCallback(data){
 			if(data.status == 'ok') {
 				self.view.$('section.done .item_title span').text(data.order_id);
+				self.view.$('section.done .done').show();
+				self.view.$('section.done .success').hide();
+				
 				self.set('activeStep', 3).view.render();
 				self.get('albums').forEach(function(el){
 					if(el.get('title') != 'cards')
@@ -199,10 +202,10 @@ Cart = Backbone.Model.extend({
 					cardsStampChecked: false
 				});
 				
-				/*setTimeout( function() {
+				setTimeout( function() {
 					if (data.redirect)
 						window.location.href = data.redirect;
-				}, 1200);*/
+				}, 2000);
 				
 				
 			}
