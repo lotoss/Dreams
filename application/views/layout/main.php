@@ -89,11 +89,11 @@
 	<div id="mainarea">
 		<!-- start header -->
 		<div id="header">
-			<a href="" id="logo"></a>
+			<a href="" id="logo" data-value="prevu"></a>
 			<!-- start control -->
 			<ul id="control">
-				<li class="construct"><i></i> Конструктор альбомов</li>
-				<li class="cart"><i></i>Корзина <span>(пусто)</span></li>
+				<li class="construct"  data-value="album"><i></i> Конструктор альбомов</li>
+				<li class="cart"  data-value="cart"><i></i>Корзина <span>(пусто)</span></li>
 			</ul>
 			<!-- end control -->
 			<!-- start socials -->
