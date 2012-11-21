@@ -5,20 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
    <!-- <link rel="stylesheet" type="text/css" href="css/styles.css" />-->
     <link rel="stylesheet" type="text/css" href="styles/dreamsalbum.css" />
-    <link rel="stylesheet" type="text/css" href="styles/jquery.selectBox.css" />
-
-	<script type="text/javascript" src="scripts/libs/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="scripts/libs/underscore-min.js"></script>
-	<script type="text/javascript" src="scripts/libs/backbone-min.js"></script>
-    <script type="text/javascript" src="scripts/libs/jquery.selectBox.min.js"></script>
-	
-	<script type="text/javascript" src="scripts/index.js"></script>
-	<script type="text/javascript">
+    <script type="text/javascript">
 		option = { cart: <?=$cart?> };
 	</script>
-	<script type="text/javascript" src="scripts/application.js"></script>
-	<script type="text/javascript" src="scripts/prevu.js"></script>
-	
+	<script type="text/javascript" src="scripts/libs/require.js" data-main="/scripts/index"></script>
+
+	<!--
+    
 	<script type="text/javascript" src="scripts/album/album.js"></script>
 	
 	<script type="text/javascript" src="scripts/album/base.view.js"></script>
@@ -34,11 +27,10 @@
 	<script type="text/javascript" src="scripts/album/boxstamp.model.js"></script>
 	<script type="text/javascript" src="scripts/album/collections.js"></script>
 	
-	<script type="text/javascript" src="scripts/cart/cart.js"></script>
-	<script type="text/javascript" src="scripts/cart/cartitem.js"></script>
-	<script type="text/javascript" src="scripts/cart/cart.view.js"></script>
 	
 	<script type="text/javascript" src="scripts/popup.js"></script>
+
+	-->
 	
 	
 
@@ -149,7 +141,15 @@
 			<!-- end prevu_page -->
 			
 			<!-- start album -->
-			<div id="album_page" class="album_page page"></div>
+			<div id="album_view" class="page album_page">
+				<ul class="app_nav album_nav">
+					<li><a href="" data-value="cover">Книга</a></li>
+					<li><a href="" data-value="stamp">Тиснение на книге</a></li>
+					<li><a href="" data-value="forzatz">Форзац</a></li>
+					<li><a href="" data-value="box">Короб</a></li>
+					<li><a href="" data-value="boxstamp">Тиснение на коробе</a></li>
+				</ul>
+			</div>
 			<!-- end album -->
 			
 			<!-- start basket -->
