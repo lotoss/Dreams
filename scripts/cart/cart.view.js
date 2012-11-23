@@ -3,7 +3,7 @@ CartView = Backbone.View.extend({
 		'click .cart_nav a': 'clickNav',
 		'click .next_step': 'nextStep',
 		'blur .item_download input' : 'blurInput',
-		'keyup .item_download input' : 'keypressInput',
+		//'keyup .item_download input' : 'keypressInput',
 		'click .tabs a': 'changeDelivery',
 		'click .order .positive .button_submit': 'pay',
 		'click .order .check input' : 'showTotalPrice',
@@ -273,9 +273,10 @@ CartView = Backbone.View.extend({
 	},
 	
 	blurInput: function(event){
-	
+		var $this = $(event.currentTarget);
 		clearTimeout(this.timeout);
 		this.model.trigger('addLink', {event: event});
+		console.log($this.closest('.basket_items li').index());
 		return false;
 	},
 	

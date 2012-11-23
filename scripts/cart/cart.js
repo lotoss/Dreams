@@ -153,7 +153,8 @@ Cart = Backbone.Model.extend({
 	addLink: function(option) {
 		var $this = $(option.event.currentTarget),
 			idx = $this.closest('.basket_items li').index();
-			
+		console.log(console);
+		console.dirxml(idx);
 		this.get('albums').at(idx).set('link', $this.val() == '' ? undefined :  $this.val() ).save();
 		
 		this.validateAlbums();
@@ -163,10 +164,9 @@ Cart = Backbone.Model.extend({
 		var albums = this.get('albums');
 		var albumsReady = true;
 		albums.each(function(val) {
-			if( !val.get('link') &&  !(val.get('cards') == true && val.get('cardsStamp') == false) )
+			if( !val.get('link') &&  !(val.get('cards') == true && !val.get('cardsStamp') ) )
 				albumsReady = false;
 		});
-		
 		this.set('albumsReady', albumsReady);
 		this.view.render();
 	},
@@ -220,11 +220,12 @@ Cart = Backbone.Model.extend({
 				title: 'cards',
 				wholePrice: 0,
 				quantity: 1,
-				cardsStamp: this.get('cardsStamp'),
+				stamp: this.get('cardsStamp'),
 				cards: true,
 				discPerAlbum: 0, 
 				last: '1'
 			});
+			console.log(this.get('cardsStamp'))
 			this.validateAlbums();
 			this.view.render();
 		} else {

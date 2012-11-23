@@ -52,7 +52,9 @@ BaseView = Backbone.View.extend({
 				break;
 				
 			case '#cart':
-					this.model.parent.trigger('addToCart', new Backbone.Model( this.model.attributes ) )
+					var alb =  new Backbone.Model( this.model.attributes );
+					alb.set('activeCover', this.model.activeCover);
+					this.model.parent.trigger('addToCart', alb );
 				break;
 				
 			case '#save':

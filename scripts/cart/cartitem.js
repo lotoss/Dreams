@@ -70,6 +70,7 @@ CartElement = Backbone.Model.extend({
 	
 	//Преобразование данных
 	parseData: function(){
+		
 		if (this.get('cards') === true)
 			return this;
 		
@@ -85,12 +86,19 @@ CartElement = Backbone.Model.extend({
 		//Покрытие
 		data['coverType'] = cover.get('labels').type;
 		data['paperType'] = this.attributes['paperType'];
-		console.log(data['paperType'], this.attributes['paperType'])
+		
 		data['coverFormat'] = cover.get('labels').format[0] + ' ' + cover.get('labels').format[1];
 		data['coverColor'] = color.get('title');
 		data['coverFormatPrice'] = cover.get('basePrice');
 		data['coverPage'] = this.attributes['pages'];
-		data['coverPagePrice'] = ( this.attributes['pages'] - cover.get('minPage') ) * cover.get('pagePrice');
+		console.log(cover)
+		/*var addPages = this.get('pages') - this.activeCover.get('default');
+		addPages = addPages < 0 ? 0 : addPages;
+		
+		var wholePrice = this.activeCover.get('basePrice') + addPages  * this.activeCover.get('pagePrice');*/
+		var addPages = this.attributes['pages'] - cover.get('default');
+		addPages = addPages < 0 ? 0 : addPages;
+		data['coverPagePrice'] = addPages  * cover.get('pagePrice');
 		data['cover_id'] = cover.get('cover_id');
 		data['color_id'] = color.get('color_id');
 		/*data['forzatz_id'] = 0;
