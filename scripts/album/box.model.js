@@ -1,4 +1,4 @@
-define (['jquery', 'album/stamp.model', 'album/box.view', 'album/color.collect'], function ($, AlbumConst, BoxView, BoxesCol) {
+define (['jquery', 'album/stamp.model', 'album/box.view', 'album/box.collect'], function ($, AlbumConst, BoxView, BoxesCol) {
 	
 	return AlbumConst = AlbumConst.extend({
 		defautls: _.extend(AlbumConst.prototype.defaults, {
@@ -9,7 +9,7 @@ define (['jquery', 'album/stamp.model', 'album/box.view', 'album/color.collect']
 			
 			
 			//Создание и сохранение вьюшки
-			this.views['box'] = new BoxView({ el: $('#box'), model: this });
+			this.views['box'] = new BoxView({ model: this });
 			
 			//Создание коллекций
 			this.boxes = new BoxesCol();
@@ -28,9 +28,10 @@ define (['jquery', 'album/stamp.model', 'album/box.view', 'album/color.collect']
 		
 		ready: AlbumConst.prototype.addReady('ready:boxes', function(){
 			this.validateBox();
-			this.views[3].showBoxInfo().render();
+			this.views['box'].showBoxInfo().render();
 			this.on('change:color', this.validateBox);
 			this.on('change:cover', this.validateBox);
+			
 		}),
 		
 		//Box events
@@ -61,8 +62,8 @@ define (['jquery', 'album/stamp.model', 'album/box.view', 'album/color.collect']
 			}
 			
 			this.calcPrice();
-			this.views[3].showBoxInfo().showNav().render();
-			
+			this.views['box'].showBoxInfo().render();
+			this.view.render();
 			this.setURL();
 		},
 		
@@ -79,7 +80,7 @@ define (['jquery', 'album/stamp.model', 'album/box.view', 'album/color.collect']
 				this.set('box', this.boxColors.at(0) );
 				this.view.showBoxInfo();
 			}*/
-			this.views[3].showBoxInfo();
+			this.views['box'].showBoxInfo();
 			return this;
 		},
 		
@@ -87,7 +88,7 @@ define (['jquery', 'album/stamp.model', 'album/box.view', 'album/color.collect']
 			
 			this.set('box', this.boxColors.at(data) );
 			
-			this.view.showBoxInfo().render();
+			this.views['box'].showBoxInfo().render();
 			
 			this.setURL();
 		},

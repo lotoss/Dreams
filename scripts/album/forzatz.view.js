@@ -2,15 +2,21 @@
 define (['jquery', 'album/base.view'], function ($, BaseView) {
 	
 	return ForzatzView = BaseView.extend({
+		tagName: 'div',
+
+		id:'forzatz',
+
+		className: 'page forzatz',
 
 		events: {
 			'click .color a' : 'controlClick',
-			'click .album_nav a' : 'navClick',
+			//'click .album_nav a' : 'navClick',
 			'click .next_step' : 'nextStep'
 		},
 		
 		initialize: function(){
 			this.name = 'forzatz';	
+			this.$el.append( $('#forzatz_temp').html() ).append( $('#album_render').html() );
 		},
 		/*render: function(){
 			var url = this.model.get('forzatz').get('src');

@@ -1,4 +1,6 @@
-define (['jquery', 'album/forzatz.model', 'album/stamp.view', 'album/color.collect'], function ($, AlbumConst, StampView, StampsCol) {
+define (['jquery', 'album/forzatz.model', 'album/stamp.view', 'album/stamp.collect'], 
+	function ($, AlbumConst, StampView, StampsCol) {
+	
 	return AlbumConst = AlbumConst.extend({
 		defautls: _.extend(AlbumConst.prototype.defaults, {
 			stamp: 'love_story',
@@ -9,15 +11,14 @@ define (['jquery', 'album/forzatz.model', 'album/stamp.view', 'album/color.colle
 		}),
 		
 		inits: AlbumConst.prototype.addInits( function(args) {
-			//Debug
 			
 			//Создание и сохранение вьюшки
-			this.views['stamp'] = new StampView({ el: $('#stamp'), model: this });
+			this.views['stamp'] = new StampView({ model: this });
 			
 			//Создание коллекций
 			this.stamps = new StampsCol();
 			this.stamps.parent = this;
-			this.on('load:data', function(){ this.stamps.loadData();});
+			this.on('load:data', function(){ this.stamps.loadData(); });
 			
 			//События изменения 
 			this.on('changeStamptype', this.changeStamp);
@@ -31,18 +32,17 @@ define (['jquery', 'album/forzatz.model', 'album/stamp.view', 'album/color.colle
 			
 			//Доп коллекции 
 			this.stampColor = new Backbone.Collection;
-			
-			
+				
 		}),
 		
 		ready: AlbumConst.prototype.addReady(['ready:stamps', 'ready:stampColor'], function(){
-			this.views[2].drawLogo().showColors().showLogoInfo().render();
-			this.views[4].showLogoInfo();
+			this.views['stamp'].drawLogo().showColors().showLogoInfo().render();
+			this.views['boxstamp'].showLogoInfo();
 			this.on('change:color', this.validateStamp);
 		}),
 		
 		validateStamp: function(){
-			this.views[2].showColors();
+			this.views['stamp'].showColors();
 		},
 		
 		changeStamp: function(_data){
@@ -102,7 +102,7 @@ define (['jquery', 'album/forzatz.model', 'album/stamp.view', 'album/color.colle
 					break;
 			}
 			
-			this.view.render().showColors();
+			this.views['stamp'].render().showColors();
 			
 			this.setURL();
 		},
@@ -116,8 +116,8 @@ define (['jquery', 'album/forzatz.model', 'album/stamp.view', 'album/color.colle
 			this.set('coverLogoSet', true);
 			this.set('coverLogo', _data ? false : true);
 			
-			this.calcPrice().views[2].showLogoInfo().render();
-			this.views[4].showLogoInfo();
+			this.calcPrice().views['stamp'].showLogoInfo().render();
+			this.views['boxstamp'].showLogoInfo();
 			this.setURL();
 		},
 		

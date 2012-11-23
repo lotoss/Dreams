@@ -5,7 +5,7 @@ define ( ['jquery', 'backbone'], function ($, Backbone) {
 			name: 'undefined'	
 		}, 
 		
-		showNav: function() {
+		/*showNav: function() {
 			var $nav = this.$('.app_nav').not('.cover ul, .app_nav_alt, .paperType ul');
 			
 			//форзац или тиснение в зависимости от материала
@@ -28,9 +28,9 @@ define ( ['jquery', 'backbone'], function ($, Backbone) {
 			
 			
 			return this;
-		}, 
+		}, */
 		
-		navClick: function(event){
+		/*navClick: function(event){
 			event.preventDefault();
 			var $this = $(event.currentTarget);
 			
@@ -40,7 +40,7 @@ define ( ['jquery', 'backbone'], function ($, Backbone) {
 			
 			this.model.trigger('navigation', { event: event, context: event.currentTarget } );
 		
-		},
+		},*/
 		
 		nextStep: function(event){
 			event.preventDefault();
@@ -105,7 +105,7 @@ define ( ['jquery', 'backbone'], function ($, Backbone) {
 			
 			
 			//Отображение размера формата
-			if(this.model.get('activeStep') == 0){
+			if(this.model.get('status') == 'cover'){
 				this.$('#album').find('.width').show().html(options.formatSizes[format][0] + ' см');
 				this.$('#album').find('.height').show().html(options.formatSizes[format][1] + ' см');
 			} else {
@@ -121,7 +121,7 @@ define ( ['jquery', 'backbone'], function ($, Backbone) {
 				});
 			}
 			
-			if(this.model.get('activeStep') == 1){
+			if(this.model.get('status') == 'forzatz'){
 				if( this.model.get('backSide') )
 					this.$('#album').addClass('backside');
 				else 

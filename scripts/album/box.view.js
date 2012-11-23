@@ -1,14 +1,22 @@
 //Отображение коробов
 define (['jquery', 'album/base.view'], function ($, BaseView) {
 	return BoxView = BaseView.extend({
+
+		tagName: 'div',
+
+		id:'box',
+
+		className: 'page box',
+
 		events: {
 			'click .back_cover a' : 'controlClick',
 			'click .color a' : 'controlClick',
-			'click .album_nav a' : 'navClick',
+			//'click .album_nav a' : 'navClick',
 			'click .next_step' : 'nextStep'
 		},
 		
 		initialize: function(){
+			this.$el.append( $('#box_temp').html() ).append( $('#album_render').html() );
 			this.album = this.$('#album');	
 			this.name = 'box';
 		},

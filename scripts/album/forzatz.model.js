@@ -9,7 +9,7 @@ define (['jquery', 'album/cover.model', 'album/forzatz.view', 'album/forzatz.col
 			
 			
 			//Создание и сохранение вьюшки
-			this.views['forzatz'] =  new ForzatzView({ el: $('#forzatz'), model: this });
+			this.views['forzatz'] =  new ForzatzView({ model: this });
 			
 			//Создание коллекций
 			this.forzatzs = new ForzatzCol();
@@ -27,14 +27,14 @@ define (['jquery', 'album/cover.model', 'album/forzatz.view', 'album/forzatz.col
 		
 		ready: AlbumConst.prototype.addReady(['ready:forzatz'], function(){
 			this.calcPrice();
-			this.views['forzatz'].render().showNav();
+			this.views['forzatz'].render();
 		}),
 		
 		changeForsatz: function(_index){
 			this.set('forzatz', this.forzatzs.at(_index) );
 			
 			this.calcPrice();
-			this.view.render().currForsatzs();
+			this.views['forzatz'].render().currForsatzs();
 			
 			this.setURL();
 			

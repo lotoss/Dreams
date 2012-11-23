@@ -16,7 +16,7 @@ define (['jquery', 'album/box.model', 'album/boxstamp.view'], function ($, Album
 			
 			
 			//Создание и сохранение вьюшки
-			this.views['boxstamp'] = new BoxStampView({ el: $('#boxstamp'), model: this });
+			this.views['boxstamp'] = new BoxStampView({ model: this });
 			
 			//События изменения 
 			this.on('changeBoxStampType', this.changeBoxStamp);
@@ -33,7 +33,7 @@ define (['jquery', 'album/box.model', 'album/boxstamp.view'], function ($, Album
 		
 		ready: AlbumConst.prototype.addReady(['ready:stamps', 'ready:boxStampColor'] , function(){
 			
-			this.views[4].drawLogo().showLogoInfo().render().showColors();
+			this.views['boxstamp'].drawLogo().showLogoInfo().render().showColors();
 			//this.on('change:stampColor', this.validateStampColor);
 			this.on('change:box', this.validateStampColor);
 		}),
@@ -93,7 +93,7 @@ define (['jquery', 'album/box.model', 'album/boxstamp.view'], function ($, Album
 					break;
 			}
 			
-			this.view.render().showColors();
+			this.views['boxstamp'].render().showColors();
 			
 			this.setURL();
 		},
@@ -101,20 +101,20 @@ define (['jquery', 'album/box.model', 'album/boxstamp.view'], function ($, Album
 		validateStampColor: function(){
 			if( !this.get('boxStampColorSet') )
 				this.set('boxStampColor', this.get('stampColor') );
-			this.views[4].showColors();
+			this.views['boxstamp'].showColors();
 		},
 		
 		setBoxLogo: function(_data){
 			
 			if( !this.get('boxLogoSet') ){
-				this.view.revertBook();
+				this.views['boxstamp'].revertBook();
 			}
 			
 			this.set('boxLogoSet', true);
 			this.set('boxLogo', _data ? false : true);
 			this.set('openAlbum', true);
 			
-			this.calcPrice().views[4].showLogoInfo().render();
+			this.calcPrice().views['boxstamp'].showLogoInfo().render();
 			
 			this.setURL();
 		},

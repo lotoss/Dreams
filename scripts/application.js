@@ -4,7 +4,8 @@ define(['jquery', 'backbone', 'app.view', 'prevu', 'album/album', 'cart/cart'], 
 
 	return Application = Backbone.Model.extend({
 		defaults: {
-			status: 'prevu' //Can be 'prevu', 'album' and 'cart'
+			status: 'prevu', //Can be 'prevu', 'album' and 'cart'
+			'user': null
 		},
 		
 		initialize: function() {
@@ -12,7 +13,7 @@ define(['jquery', 'backbone', 'app.view', 'prevu', 'album/album', 'cart/cart'], 
 			//atach App View
 			this.album = new AlbumConst();
 			Backbone.emulateHTTP = true;
-			this.cart = new Cart();	
+			window.cart = this.cart = new Cart();	
 			
 			var subviews = {
 				'prevu' : (new PrevuPage({el: $('#prevu')}) ).$el,

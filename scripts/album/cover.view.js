@@ -15,7 +15,7 @@ define (['jquery', 'album/base.view'], function ($, BaseView) {
 			'click .format a' : 'controlClick',
 			'click .paperType a' : 'controlClick',
 			'click .pages a' : 'arrowClick',
-			'click .album_nav a' : 'navClick',
+			//'click .album_nav a' : 'navClick',
 			'click .next_step' : 'nextStep',
 			'mousedown  .pages a, selectstart  .pages a' : function() {return false;}
 		},
@@ -23,8 +23,10 @@ define (['jquery', 'album/base.view'], function ($, BaseView) {
 		initialize: function(){
 			this.name = 'cover';
 			
+			this.$el.append( $('#album_temp').html() ).append( $('#album_render').html() );
+			
 			this.colorList = this.$('.color_list');
-			//this.album = this.$('#album');
+			this.album = this.$('#album');
 			
 			var format = this.model.get('format');
 			this.$('.format li').eq(format == 'big_square' ? 0 : format == 'small_square' ? 1 : format == 'big_rect' ? 2 : 3 ).addClass('active');

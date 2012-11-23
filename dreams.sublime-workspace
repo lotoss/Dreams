@@ -19,47 +19,7 @@
 			"file": "scripts/application.js",
 			"settings":
 			{
-				"buffer_size": 1518,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scripts/app.router.js",
-			"settings":
-			{
-				"buffer_size": 2872,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "application/views/layout/main.php",
-			"settings":
-			{
-				"buffer_size": 8677,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scripts/app.view.js",
-			"settings":
-			{
-				"buffer_size": 1231,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scripts/album/album.js",
-			"settings":
-			{
-				"buffer_size": 11735,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scripts/album/album.view.js",
-			"settings":
-			{
-				"buffer_size": 959,
+				"buffer_size": 1549,
 				"line_ending": "Windows"
 			}
 		},
@@ -67,23 +27,7 @@
 			"file": "scripts/album/base.model.js",
 			"settings":
 			{
-				"buffer_size": 1064,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scripts/album/cover.model.js",
-			"settings":
-			{
-				"buffer_size": 7416,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scripts/album/cover.view.js",
-			"settings":
-			{
-				"buffer_size": 3381,
+				"buffer_size": 2137,
 				"line_ending": "Windows"
 			}
 		},
@@ -91,7 +35,82 @@
 			"file": "scripts/album/base.view.js",
 			"settings":
 			{
-				"buffer_size": 8913,
+				"buffer_size": 9262,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/album/cover.model.js",
+			"settings":
+			{
+				"buffer_size": 7841,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/album/forzatz.model.js",
+			"settings":
+			{
+				"buffer_size": 2143,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/album/album.js",
+			"settings":
+			{
+				"buffer_size": 10213,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/album/box.model.js",
+			"settings":
+			{
+				"buffer_size": 4097,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/album/boxstamp.model.js",
+			"settings":
+			{
+				"buffer_size": 4107,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/album/stamp.model.js",
+			"settings":
+			{
+				"buffer_size": 5314,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "//Отображение тиснений\ndefine (['jquery', 'album/base.view'], function ($, BaseView) {\n	return StampView = BaseView.extend({\n		\n		tagName: 'div',\n\n		id:'stamp',\n\n		className: 'page stamp',\n\n		events: {\n			'click .stamps a' : 'controlClick',\n			'click .color a' : 'controlClick',\n			'click .stamp_slider a' : 'arrowClick',\n			'mousedown  .stamp_slider a, selectstart  .stamp_slider a' : function() {return false;},\n			'click .button_revert' : 'revertBook',\n			'click .back_cover li a' : 'setLogo',\n			'click .next_step' : 'nextStep'\n		},\n		\n		initialize: function(){\n			this.$el.append( $('#stamp_temp').html() ).append( $('#album_render').html() );\n			this.album = this.$('#album');\n			this.name = 'stamp';	\n			\n		},\n		\n		showColors: function(){\n			\n			var self = this;\n			var output = '';\n			\n			this.$('.color').hide();	\n			\n			\n			if(this.model.get('coverType') == 'photo' || !this.model.get('stamp') )\n				return this;\n			\n			this.$('.color').show();	\n			\n			var acsepts = this.model.get('color').get('stamp');\n			\n			var colors = this.model.stampColor.filter(function(el){\n				return _.include(acsepts, el.get('name'));\n			});\n			\n			for(var i = 0; i < colors.length; i++){\n				\n				if(colors[i].get('name') == 'blint'){\n					var src_url = options.colorsFolder + '/'+ this.model.get('color').get('src');\n					output += '<li><a href=\"#\" style=\"background-image: url('+ src_url +') \"></a></li>';\n				} else {\n					var src_url = options.stampsImgSrc + '/'+ colors[i].get('src');\n					output += '<li><a href=\"#\" style=\"background: url('+ src_url +') -'\n						+ colors[i].get('position')[0] +'px -'+ colors[i].get('position')[1] +'px\"></a></li>';\n				}\n					\n			}\n			\n			this.$('.color .color_list').html(output);\n			\n			\n			//Установка активного цвета тиснения\n			if( _.include(colors, this.model.get('stampColor') ) ){\n				this.$('.color li').eq( colors.indexOf(this.model.get('stampColor')) ).addClass('active');\n			} else {\n				\n				this.model.set('stampColor', colors[0]);\n				this.$('.color li').eq(0).addClass('active');\n			}\n			\n			\n			return this;\n		},\n		\n		showLogoInfo: function(){\n			\n			if( this.model.get('coverLogoSet') ){\n				this.$('.back_cover p, .button_revert, .back_cover li:last').show();\n			} else {\n				this.$('.back_cover p, .button_revert, .back_cover li:last').hide();\n			}\n			\n			if(this.model.get('coverLogo') ){\n				this.$('.back_cover li').removeClass('active').eq(0).addClass('active');\n			} else{\n				this.$('.back_cover li').removeClass('active').eq(1).addClass('active');\n			} \n			\n			if( this.model.get('coverLogo') ){\n				this.album.addClass('coverlogo');\n			} else {\n				this.album.removeClass('coverlogo');\n			}\n			\n			this.$('#cover_logo_price span').text( this.model.get('coverLogo') ? this.model.stamps.where({name: 'logo'})[0].get('price') : 0);\n			\n			return this;\n		},\n		\n		controlClick: function(event){\n			event.preventDefault();\n			var $this = $(event.currentTarget).parent();\n			\n			$this.addClass('active').siblings().removeClass('active');\n			\n			if($this.parent().parent().is('.stamps'))\n				this.model.trigger('changeStamptype', { index: $this.index(), type: 'type' } );\n				\n			if($this.parent().parent().is('.color'))\n				this.model.trigger('changeStampcolor', { index: $this.index(), type: 'color' } );\n				\n			\n				\n		},\n		\n		arrowClick: function(event){\n			event.preventDefault();\n			\n			var $this = $(event.currentTarget);\n			if($this.hasClass('prev'))\n				this.model.trigger('changeStamp', { index: $this.index(), type: 'stamp', dir: -1 } );\n			else\n				this.model.trigger('changeStamp', { index: $this.index(), type: 'stamp', dir: 1 } );\n		},\n		\n		revertBook: function(event){\n			if(event)\n				event.preventDefault();\n				\n			if( this.model.get('backSide') )\n				this.model.set('backSide', false);\n			else \n				this.model.set('backSide', true);\n				\n			this.$('#album').toggleClass('backside');\n			\n			return this;\n		},\n		\n		setLogo: function(event){\n			event.preventDefault();\n			this.model.trigger('setLogo', $(event.currentTarget).parent().index() );\n			return this;\n		},\n		\n		drawLogo: function(){\n			var logo = this.model.stamps.find(function(el){ return el.get('name') == 'logo'; });\n			var color = this.model.stampColor.find(function (el) { return el.get('name') == 'blint'; });\n			if(logo != undefined && color != undefined) {\n				this.$('.backstamp').css({\n					'background-position' : '-'+ \n					(color.get('middle') - \n					\n					\n					logo.get('width') / 2) +'px' + ' -'\n					\n					 + logo.get('imgY')+ 'px' ,\n					height: logo.get('height'),\n					width: logo.get('width'),\n					'margin-left': -logo.get('width') / 2,\n					'margin-top': -logo.get('height') / 2\n					});\n				}\n			\n		\n			return this;\n		}\n		\n		\n	});\n});",
+			"file": "scripts/album/stamp.view.js",
+			"file_size": 4952,
+			"file_write_time": 129980611721910198,
+			"settings":
+			{
+				"buffer_size": 4690,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "styles/dreamsalbum.css",
+			"settings":
+			{
+				"buffer_size": 38873,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts/album/album.view.js",
+			"settings":
+			{
+				"buffer_size": 1265,
 				"line_ending": "Windows"
 			}
 		}
@@ -99,9 +118,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 334.0,
+		"height": 311.0,
 		"selected_items":
 		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
 			[
 				"Snippet: ",
 				"Snippet: Object Value JS"
@@ -111,11 +134,11 @@
 				"Bookmarks: Clear All"
 			]
 		],
-		"width": 416.0
+		"width": 400.0
 	},
 	"console":
 	{
-		"height": 0.0
+		"height": 214.0
 	},
 	"distraction_free":
 	{
@@ -128,8 +151,32 @@
 	},
 	"file_history":
 	[
-		"/Z/home/dreams.loc/www/scripts/album/box.model.js",
+		"/Z/home/dreams.loc/www/scripts/album/box.collect.js",
+		"/Z/home/dreams.loc/www/styles/dreamsalbum.css",
+		"/Z/home/dreams.loc/www/scripts/album/stamp.model.js",
+		"/Z/home/dreams.loc/www/scripts/album/color.collect.js",
+		"/Z/home/dreams.loc/www/scripts/album/cover.view.js",
+		"/Z/home/dreams.loc/www/scripts/album/forzatz.view.js",
+		"/Z/home/dreams.loc/www/scripts/album/boxstamp.view.js",
+		"/Z/home/dreams.loc/www/scripts/album/box.view.js",
+		"/Z/home/dreams.loc/www/scripts/album/stamp.view.js",
 		"/Z/home/dreams.loc/www/scripts/album/album.view.js",
+		"/Z/home/dreams.loc/www/scripts/album/boxstamp.model.js",
+		"/Z/home/dreams.loc/www/scripts/album/box.model.js",
+		"/Z/home/dreams.loc/www/scripts/app.view.js",
+		"/Z/home/dreams.loc/www/scripts/application.js",
+		"/Z/home/dreams.loc/www/scripts/album/album.js",
+		"/Z/home/dreams.loc/www/scripts/album/cover.model.js",
+		"/Z/home/dreams.loc/www/scripts/album/forzatz.model.js",
+		"/Z/home/dreams.loc/www/scripts/app.router.js",
+		"/Z/home/dreams.loc/www/scripts/album/view_template.html",
+		"/Z/home/dreams.loc/www/scripts/album/base.model.js",
+		"/Z/home/dreams.loc/www/scripts/album/base.view.js",
+		"/Z/home/dreams.loc/www/application/views/layout/main.php",
+		"/Z/home/dreams.loc/www/scripts/album/stamp.collect.js",
+		"/Z/home/dreams.loc/www/scripts/album/collections.js",
+		"/Z/home/dreams.loc/www/scripts/album/cover.collect.js",
+		"/Z/home/dreams.loc/www/scripts/album/forzatz.collect.js",
 		"/Z/home/dreams.loc/www/scripts/cart/cart.js",
 		"/Z/home/dreams.loc/www/scripts/cart/cart.view.js",
 		"/Z/home/dreams.loc/www/scripts/cart/cartitem.coll.js",
@@ -138,11 +185,8 @@
 		"/Z/home/dreams.loc/www/scripts/index.js",
 		"/Z/home/dreams.loc/www/scripts/cart/cartitem.js",
 		"/Z/home/dreams.loc/www/scripts/prevu.js",
-		"/Z/home/dreams.loc/www/styles/dreamsalbum.css",
 		"/Z/home/dreams.loc/www/scripts/libs/jquery.selectBox.min.js",
-		"/Z/home/dreams.loc/www/scripts/app.view.js",
 		"/Z/home/dreams.loc/www/scripts/app.routes.js",
-		"/Z/home/dreams.loc/www/scripts/album/view_template.html",
 		"/Z/home/dreams.loc/www/scripts/cart/cart_template.html",
 		"/Z/home/dreams.loc/www/scripts/libs/require.js",
 		"/D/node/test/index.js",
@@ -154,9 +198,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 90.0,
 		"where_history":
 		[
+			"Z:\\home\\dreams.loc\\www\\scripts\\album"
 		]
 	},
 	"find_state":
@@ -164,6 +209,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"menu",
+			"this.view.",
+			"this.view",
+			"this.view.",
+			"this.view",
+			");\n",
+			"showNav",
+			"model",
+			"showColors",
+			"views",
+			"readyCalback",
+			"alert",
+			"navClick",
+			"currColor",
+			"this.views['cover'",
+			"this.views['cover'].sho",
+			"currColor",
+			"loadCover",
+			"views",
+			"showAlbum",
+			"showPage",
+			"views",
 			"status",
 			"console",
 			"rendering",
@@ -189,6 +256,7 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -196,15 +264,15 @@
 					"file": "scripts/application.js",
 					"settings":
 					{
-						"buffer_size": 1518,
+						"buffer_size": 1549,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								531,
-								541
+								939,
+								939
 							]
 						],
 						"settings":
@@ -213,25 +281,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 84.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "scripts/app.router.js",
+					"file": "scripts/album/base.model.js",
 					"settings":
 					{
-						"buffer_size": 2872,
+						"buffer_size": 2137,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2868,
-								2868
+								731,
+								731
 							]
 						],
 						"settings":
@@ -247,45 +315,45 @@
 				},
 				{
 					"buffer": 2,
-					"file": "application/views/layout/main.php",
+					"file": "scripts/album/base.view.js",
 					"settings":
 					{
-						"buffer_size": 8677,
+						"buffer_size": 9262,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6279,
-								6279
+								4298,
+								4298
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1596.0,
+						"translation.y": 882.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "scripts/app.view.js",
+					"file": "scripts/album/cover.model.js",
 					"settings":
 					{
-						"buffer_size": 1231,
+						"buffer_size": 7841,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								390,
-								390
+								5151,
+								5151
 							]
 						],
 						"settings":
@@ -294,25 +362,29 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1779.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "scripts/album/album.js",
+					"file": "scripts/album/forzatz.model.js",
 					"settings":
 					{
-						"buffer_size": 11735,
+						"buffer_size": 2143,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1270,
-								1270
+								1558,
+								1567
+							],
+							[
+								1599,
+								1599
 							]
 						],
 						"settings":
@@ -321,25 +393,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 462.0,
+						"translation.y": 440.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "scripts/album/album.view.js",
+					"file": "scripts/album/album.js",
 					"settings":
 					{
-						"buffer_size": 959,
+						"buffer_size": 10213,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								748,
-								771
+								7719,
+								7719
 							]
 						],
 						"settings":
@@ -355,18 +427,18 @@
 				},
 				{
 					"buffer": 6,
-					"file": "scripts/album/base.model.js",
+					"file": "scripts/album/box.model.js",
 					"settings":
 					{
-						"buffer_size": 1064,
+						"buffer_size": 4097,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								434,
-								436
+								1925,
+								1925
 							]
 						],
 						"settings":
@@ -375,25 +447,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 454.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 7,
-					"file": "scripts/album/cover.model.js",
+					"file": "scripts/album/boxstamp.model.js",
 					"settings":
 					{
-						"buffer_size": 7416,
+						"buffer_size": 4107,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								900,
+								900
 							]
 						],
 						"settings":
@@ -409,18 +481,45 @@
 				},
 				{
 					"buffer": 8,
-					"file": "scripts/album/cover.view.js",
+					"file": "scripts/album/stamp.model.js",
 					"settings":
 					{
-						"buffer_size": 3381,
+						"buffer_size": 5314,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								413,
-								413
+								2709,
+								2709
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1098.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "scripts/album/stamp.view.js",
+					"settings":
+					{
+						"buffer_size": 4690,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								500,
+								500
 							]
 						],
 						"settings":
@@ -435,19 +534,46 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "scripts/album/base.view.js",
+					"buffer": 10,
+					"file": "styles/dreamsalbum.css",
 					"settings":
 					{
-						"buffer_size": 8913,
+						"buffer_size": 38873,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								13706,
+								13706
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 9226.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "scripts/album/album.view.js",
+					"settings":
+					{
+						"buffer_size": 1265,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								893,
+								893
 							]
 						],
 						"settings":
@@ -456,7 +582,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 84.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -470,7 +596,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 30.0
 	},
 	"layout":
 	{
@@ -520,6 +646,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 169.0,
+	"side_bar_width": 194.0,
 	"status_bar_visible": true
 }

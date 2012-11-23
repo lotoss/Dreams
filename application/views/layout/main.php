@@ -141,7 +141,7 @@
 			<!-- end prevu_page -->
 			
 			<!-- start album -->
-			<div id="album_view" class="page album_page">
+			<div id="album_view" class="page">
 				<ul class="app_nav album_nav">
 					<li><a href="" data-value="cover">Книга</a></li>
 					<li><a href="" data-value="stamp">Тиснение на книге</a></li>

@@ -10,6 +10,38 @@ define ( ['jquery', 'backbone'], function ($, Backbone) {
 			openAlbum: false,
 			ready: false
 		},
+
+		//Инициализатор
+		initialize: function(){
+			//_.bindWith(this);
+			var self = this;
+			this.inits.fireWith(this);
+			//Запуск всех инициализаторов
+			/*for(var i = 0; i < this.inits.length; i++ ) {
+				this.inits[i].apply(this, arguments);
+			}*/
+			
+			this.view  = new AlbumView({model: this, el: $('#album_view')});
+			this.on('change:status', this.view.render);
+			this.on('change:coverType', this.view.render);
+			//this.view = this.views[this.get('activeStep')];
+			
+			//Запуск ожидания загрузки
+			for(var i = 0; i < this.ready.events.length; i++ ){
+				this.on(this.ready.events[i], this.readyCalback);
+			}
+			
+			//this.init();
+			
+			
+			//this.on('load:data', function(){  popupC.loadData(this.data.popups); });
+			//Подгрузка данных
+			$.post(options.dataUrl, function(_data){
+				self.data = _data;
+				self.trigger('load:data');
+			}, 'json');
+		},
+		
 		
 		inits: $.Callbacks().add(function() {
 			this.views = {};
@@ -48,7 +80,6 @@ define ( ['jquery', 'backbone'], function ($, Backbone) {
 		},
 		
 		readyCalback: function(event){
-			
 			this.ready.events.splice( this.ready.events.indexOf(event), 1);
 			
 			if(this.ready.events.length === 0){
@@ -56,7 +87,7 @@ define ( ['jquery', 'backbone'], function ($, Backbone) {
 					this.ready.calbacks[i].apply(this);
 					
 				this.set('ready', true);
-				this.view.showNav();	
+				this.view.render();	
 			}
 			
 			

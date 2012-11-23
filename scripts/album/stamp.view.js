@@ -2,6 +2,12 @@
 define (['jquery', 'album/base.view'], function ($, BaseView) {
 	return StampView = BaseView.extend({
 		
+		tagName: 'div',
+
+		id:'stamp',
+
+		className: 'page stamp',
+
 		events: {
 			'click .stamps a' : 'controlClick',
 			'click .color a' : 'controlClick',
@@ -9,11 +15,12 @@ define (['jquery', 'album/base.view'], function ($, BaseView) {
 			'mousedown  .stamp_slider a, selectstart  .stamp_slider a' : function() {return false;},
 			'click .button_revert' : 'revertBook',
 			'click .back_cover li a' : 'setLogo',
-			'click .album_nav a' : 'navClick',
+			//'click .album_nav a' : 'navClick',
 			'click .next_step' : 'nextStep'
 		},
 		
 		initialize: function(){
+			this.$el.append( $('#stamp_temp').html() ).append( $('#album_render').html() );
 			this.album = this.$('#album');
 			this.name = 'stamp';	
 			

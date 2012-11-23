@@ -732,7 +732,7 @@ strong.price_small {
 
 .middle_side{
 	position: absolute;
-	top:43px;
+	top:2px;
 	left:50%;
 	margin-left:-211px;
 	/*overflow:hidden;*/
@@ -1023,7 +1023,7 @@ a:hover, .page .middle_side p a:hover, .discount_mywed a:hover{
 	position:absolute;
 	width:794px;;
 	height:398px;
-	top:79px; 
+	top:38px; 
 	left:65px;
 	display:none;
 }
@@ -1079,7 +1079,7 @@ a:hover, .page .middle_side p a:hover, .discount_mywed a:hover{
 	background-position:0 0;
 }
 .forzatz .book_price{
-	bottom: 57px;
+	bottom: 98px;
 	left: 50%;
 	margin-left:9px;
 }

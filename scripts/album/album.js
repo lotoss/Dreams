@@ -2,37 +2,6 @@
 define (['jquery', 'backbone', 'album/album.view', 'album/boxstamp.model'], function ($, Bakcbone, AlbumView, AlbumConst) {
 	return AlbumConst = AlbumConst.extend({
 		
-		//Инициализатор
-		initialize: function(){
-			//_.bindWith(this);
-			var self = this;
-			this.inits.fireWith(this);
-			//Запуск всех инициализаторов
-			/*for(var i = 0; i < this.inits.length; i++ ) {
-				this.inits[i].apply(this, arguments);
-			}*/
-			
-			this.view  = new AlbumView({model: this, el: $('#album_view')});
-			this.on('change:status', this.view.render);
-			//this.view = this.views[this.get('activeStep')];
-			
-			//Запуск ожидания загрузки
-			
-			
-			/*for(var i = 0; i < this.ready.events.length; i++ ){
-				this.on(this.ready.events[i], this.readyCalback);
-			}*/
-			
-			//this.init();
-			
-			
-			//this.on('load:data', function(){  popupC.loadData(this.data.popups); });
-			//Подгрузка данных
-			$.post(options.dataUrl, function(_data){
-				self.data = _data;
-				self.trigger('load:data');
-			}, 'json');
-		},
 		
 		clearAlbum: function(){
 			this.off('change:color', this.validateStamp);
@@ -334,9 +303,6 @@ define (['jquery', 'backbone', 'album/album.view', 'album/boxstamp.model'], func
 		},
 		
 		getColorSprite: function(){
-			console.error ('Album.getColorSprite');
-			var self = this;
-			
 			return options.colorsFolder + '/'+ this.get('color').get('src');
 		},
 		

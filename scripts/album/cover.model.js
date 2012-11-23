@@ -23,11 +23,11 @@ define (['jquery', 'album/base.model', 'album/cover.view', 'album/color.collect'
 			//Создание коллекций
 			this.colors = new ColorCol();
 			this.colors.parent = this;
-			this.on('load:data', function(){ this.colors.loadData();});
+			this.on('load:data', function(){ this.colors.loadData(); });
 			
 			this.covers = new CoverCol();
 			this.covers.parent = this;
-			this.on('load:data', function(){ this.covers.loadData();});
+			this.on('load:data', function(){ this.covers.loadData(); });
 			
 			//Доп коллекции
 			this.visibleColors = new Backbone.Collection;
@@ -48,9 +48,8 @@ define (['jquery', 'album/base.model', 'album/cover.view', 'album/color.collect'
 		}),
 				
 		ready: AlbumConst.prototype.addReady(['ready:colors','ready:covers'], function () {
-			
 			this.calcPrice();
-			this.views['cover'].render().showNav();
+			this.views['cover'].render();
 		}),
 		
 		//Обработчик изменения цвета
@@ -101,12 +100,15 @@ define (['jquery', 'album/base.model', 'album/cover.view', 'album/color.collect'
 			
 			//Установка цветов материала
 			this.visibleColors.reset(this.colors.filter(function(color){ return color.get('type') == self.get('coverType'); }) );
+			console.log(this.get('lastCloth'));
+			console.log(this.get('lastLeather'));
+			console.log(this.colors.where( {name: 'photo'} )[0]);
 			this.set('color', 
 				this.get('coverType') == 'cloth' ? 
 					this.get('lastCloth') :  
 				this.get('coverType') == 'leather' ? 
 					this.get('lastLeather') : 
-					this.colors.find(function(el){ return el.get('name') == 'photo' ;}) 
+					this.colors.where( {name: 'photo'} )[0] 
 			);
 			
 			//Поиск данных о формате (по размеру и типу) и установка					
@@ -118,7 +120,7 @@ define (['jquery', 'album/base.model', 'album/cover.view', 'album/color.collect'
 			this.setPages().calcPrice();
 
 			//Отображение цветов
-			this.views['cover'].showColors().showPagesInfo().showNav().render();
+			this.views['cover'].showColors().showPagesInfo().render();
 			
 			//this.views[3].showBoxInfo();
 			this.changePaperType();
@@ -173,7 +175,7 @@ define (['jquery', 'album/base.model', 'album/cover.view', 'album/color.collect'
 		
 			
 			this.set('lastCloth', self.colors.where({name: self.get('lastCloth') })[0] , { silent: true });
-			this.set('lastLeather', self.colors.where({name: self.get('lastCloth') })[0] , { silent: true });
+			this.set('lastLeather', self.colors.where({name: self.get('lastLeather') })[0] , { silent: true });
 			
 			
 			if( typeof( this.get('color') ) == 'number' ){
@@ -188,6 +190,7 @@ define (['jquery', 'album/base.model', 'album/cover.view', 'album/color.collect'
 			}
 			
 			this.views['cover'].showColors();
+			
 			this.trigger('ready:colors', 'ready:colors');
 			
 		},
@@ -209,6 +212,7 @@ define (['jquery', 'album/base.model', 'album/cover.view', 'album/color.collect'
 			
 			//Draw альбома
 			this.views['cover'].showPagesInfo();
+			
 			this.trigger('ready:covers','ready:covers');
 			
 		},
